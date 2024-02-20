@@ -1,6 +1,6 @@
-import { readdir, mkdir } from "node:fs/promises";
-import matter, { type GrayMatterFile } from 'gray-matter';
 import markdownit from 'markdown-it'
+import { readdir } from "node:fs/promises";
+import matter, { type GrayMatterFile } from 'gray-matter';
 
 import type { BunFile } from "bun";
 import type { ParsedFile } from "../types/ParsedFile";
@@ -50,7 +50,16 @@ export const parseMarkdownFiles = async (markdownPaths: string[]): Promise<Parse
 }
 
 export const writePostHtmls = async (parsedFiles: ParsedFile[], entryDir: string, distDir: string): Promise<void> => {
+  const PostUI = await import(`${entryDir}/ui/page.ts`);
+
   parsedFiles.forEach(async (obj: ParsedFile) => {
-    await Bun.write(`${distDir}/post/${obj.data.slug}.html`, obj.content)
+    const html = PostUI.default(obj);
+    const minifiedHtml = html
+      .replace(/[\n\r\s\t]+/g, ' ')
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/>\s+</g, '><').trim()
+    const htmlFilePath = `${distDir}/post/${obj.data.slug}.html`;
+    await Bun.write(htmlFilePath, minifiedHtml)
   })
 }
+
