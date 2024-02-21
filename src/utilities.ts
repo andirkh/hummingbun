@@ -33,15 +33,13 @@ export const parseMarkdownFiles = async (markdownPaths: string[]): Promise<Parse
         const md = markdownit()
         const result: ParsedFile = {
           content: md.render(obj.content),
-          data: {
-            title: obj.data.title,
-            date: obj.data.date,
-            author: obj.data.author,
-            categories: obj.data.categories,
-            slug: obj.data.slug,
-            image: obj.data.image,
-            draft: obj.data.draft
-          }
+          title: obj.data.title,
+          date: obj.data.date,
+          author: obj.data.author,
+          categories: obj.data.categories,
+          slug: obj.data.slug,
+          image: obj.data.image,
+          draft: obj.data.draft
         }
 
         return result;
@@ -58,7 +56,7 @@ export const writePostHtmls = async (parsedFiles: ParsedFile[], entryDir: string
       .replace(/[\n\r\s\t]+/g, ' ')
       .replace(/<!--[\s\S]*?-->/g, '')
       .replace(/>\s+</g, '><').trim()
-    const htmlFilePath = `${distDir}/post/${obj.data.slug}.html`;
+    const htmlFilePath = `${distDir}/post/${obj.slug}.html`;
     await Bun.write(htmlFilePath, minifiedHtml)
   })
 }
