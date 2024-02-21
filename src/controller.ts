@@ -14,7 +14,7 @@ export const parseMarkdownFiles = async (markdownPaths: string[]): Promise<Parse
 }
 
 export const writePostHtmls = async (parsedFiles: ParsedFile[], entryDir: string, distDir: string): Promise<void> => {
-  const PostUI = await import(`${entryDir}/ui/page.ts`);
+  const PostUI = await import(`${entryDir}/ui/post.ts`);
 
   parsedFiles.forEach(async (obj: ParsedFile) => {
     const html = PostUI.default(obj);
