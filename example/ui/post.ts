@@ -1,6 +1,6 @@
 import type { ParsedFile } from "../../types/ParsedFile";
 
-const page = (obj: ParsedFile): string => {
+const post = (obj: ParsedFile): string => {
     return String.raw`
       <!DOCTYPE html>
       <html lang="en">
@@ -21,4 +21,4 @@ const page = (obj: ParsedFile): string => {
     `
 }
 
-export default page;
+export default post;

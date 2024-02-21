@@ -1,4 +1,4 @@
-const page404: string = String.raw`
+const page: string = String.raw`
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -12,4 +12,4 @@ const page404: string = String.raw`
   </html>
 `
 
-export default page404;
+export default page;
