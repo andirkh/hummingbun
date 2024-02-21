@@ -1,7 +1,6 @@
 {
   "name": "hummingbun",
   "module": "index.ts",
-  "type": "module",
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -12,7 +11,5 @@
     "serve": "bun run index.ts",
     "hot": "bun --hot run index.ts"
   },
-  "dependencies": {
-    "markdown-it": "^14.0.0"
-  }
+  "type": "module"
 }

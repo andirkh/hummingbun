@@ -1,10 +1,13 @@
 import { PATH_ENTRY_DIR, PATH_DIST_DIR, PATH_CONTENT_DIR } from './constants'
-import { 
-  checkDirectory, 
-  getFilePaths, 
+import {
+  checkDirectory,
+  getFilePaths
+} from './src/fileExplorer'
+
+import {
   parseMarkdownFiles,
   writePostHtmls
-} from './src/utilities';
+} from './src/controller';
 
 const buildDistribution = async (): Promise<void> => {
   await checkDirectory(PATH_ENTRY_DIR);
