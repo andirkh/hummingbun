@@ -7,7 +7,7 @@ interface ParsedFile {
   slug: string;
   image: string;
   draft: boolean;
-  type?: 'post' | 'pages'
+  type: 'post' | 'pages'
 }
 
 export { ParsedFile }
