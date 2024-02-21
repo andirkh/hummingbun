@@ -7,15 +7,15 @@ const page = (obj: ParsedFile): string => {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${obj.data.title}</title>
+        <title>${obj.title}</title>
       </head>
       <body>
-        <img src="${obj.data.image}" alt="${obj.data.title}">
-        <h1>${obj.data.title}</h1>
-        <p>date: ${obj.data.date}<p>
-        <p>author: ${obj.data.author}</p>
+        <img src="${obj.image}" alt="${obj.title}">
+        <h1>${obj.title}</h1>
+        <p>date: ${obj.date}<p>
+        <p>author: ${obj.author}</p>
         <div>${obj.content}</div>
-        <div>categories: ${obj.data.categories.join(', ')}</div>
+        <div>categories: ${obj.categories.join(', ')}</div>
       </body>
       </html>
     `
