@@ -8,11 +8,15 @@ import type { HomeRoute } from "../types/HomeRoute";
 import type { LocalRoute } from "../types/LocalRoute";
 
 export const extractContents = async (markdownPaths: string[]): Promise<Content[]> => {
-  const parsedFiles: Promise<Content>[] = markdownPaths.map(async (mdpath) => {
-    const file: BunFile = Bun.file(mdpath);
-    const fileText: string = await file.text()
-    return extractFrontmatter(fileText)
-  })
+  const mdFileRegex = /\.md$/i
+
+  const parsedFiles: Promise<Content>[] = markdownPaths
+    .filter(filepath => mdFileRegex.test(filepath))
+    .map(async (mdpath) => {
+      const file: BunFile = Bun.file(mdpath);
+      const fileText: string = await file.text()
+      return extractFrontmatter(fileText)
+    })
 
   return Promise.all(parsedFiles)
 }
