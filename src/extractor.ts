@@ -1,12 +1,12 @@
 import { convertMdToHtml } from "./converter";
 
-import type { ParsedFile } from "../types/ParsedFile";
+import type { Content } from "../types/Content";
 
-export const extractFrontmatter = (markdown: string): ParsedFile => {
+export const extractFrontmatter = (markdown: string): Content => {
   const delimiter: string = '---';
   const parts: string[] = markdown.split(delimiter);
 
-  const yamlData: ParsedFile = {
+  const yamlData: Content = {
     content: convertMdToHtml(parts.slice(2).concat().join()),
     title: '',
     date: new Date('1994-01-31T00:00:00Z'),

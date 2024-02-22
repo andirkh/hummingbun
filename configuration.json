@@ -1,4 +1,5 @@
 {
   "entryDir": "example",
-  "distributionDir": "dist"
+  "distributionDir": "dist",
+  "perPage": 3
 }

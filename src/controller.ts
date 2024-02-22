@@ -1,10 +1,10 @@
 import type { BunFile } from "bun";
-import type { ParsedFile } from "../types/ParsedFile";
+import type { Content } from "../types/Content";
 
 import { extractFrontmatter } from "./extractor";
 
-export const parseMarkdownFiles = async (markdownPaths: string[]): Promise<ParsedFile[]> => {
-  const parsedFiles: Promise<ParsedFile>[] = markdownPaths.map(async (mdpath) => {
+export const parseMarkdownFiles = async (markdownPaths: string[]): Promise<Content[]> => {
+  const parsedFiles: Promise<Content>[] = markdownPaths.map(async (mdpath) => {
     const file: BunFile = Bun.file(mdpath);
     const fileText: string = await file.text()
     return extractFrontmatter(fileText)
@@ -13,10 +13,10 @@ export const parseMarkdownFiles = async (markdownPaths: string[]): Promise<Parse
   return Promise.all(parsedFiles)
 }
 
-export const writePostHtmls = async (parsedFiles: ParsedFile[], entryDir: string, distDir: string): Promise<void> => {
+export const writePostHtmls = async (parsedFiles: Content[], entryDir: string, distDir: string): Promise<void> => {
   const PostUI = await import(`${entryDir}/ui/post.ts`);
 
-  parsedFiles.forEach(async (obj: ParsedFile) => {
+  parsedFiles.forEach(async (obj: Content) => {
     const html = PostUI.default(obj);
     const minifiedHtml = html
       .replace(/[\n\r\s\t]+/g, ' ')

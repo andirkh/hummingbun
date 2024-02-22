@@ -1,6 +1,6 @@
-import type { ParsedFile } from "../../types/ParsedFile";
+import type { Content } from "../../types/Content";
 
-const post = (obj: ParsedFile): string => {
+const post = (obj: Content): string => {
     return String.raw`
       <!DOCTYPE html>
       <html lang="en">

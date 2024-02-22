@@ -1,6 +1,7 @@
 interface Configuration {
   entryDir: string;
   distributionDir: string;
+  perPage: number;
 }
 
-export { Configuration };
+export type { Configuration };
