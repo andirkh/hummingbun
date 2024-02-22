@@ -1,5 +1,4 @@
 {
-  "entryDir": "example",
-  "distributionDir": "dist",
+  "blog": "example",
   "perPage": 3
 }
