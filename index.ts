@@ -1,20 +1,24 @@
 import { watch } from "fs";
 
-import { PATH_ENTRY_DIR, PATH_DIST_DIR, PATH_CONTENT_DIR, perPage } from './constants'
 import {
   checkDirectory,
   getFilePaths
 } from './src/fileExplorer'
-
 import {
-  parseMarkdownFiles,
   writePostHtmls,
   writeHomeHtmls,
 } from './src/controller';
-
-import { mapLocalRoute } from './src/mappers';
-
+import { 
+  mapLocalRoute, 
+  extractContents 
+} from './src/mappers';
 import { debounce } from "./src/utils";
+import { 
+  PATH_ENTRY_DIR, 
+  PATH_DIST_DIR, 
+  PATH_CONTENT_DIR,
+  PORT,
+} from './constants'
 
 import type { Content } from './types/Content';
 import type { LocalRoute } from './types/LocalRoute';
@@ -34,22 +38,26 @@ const buildHomeHtmls = async (contents: Content[]): Promise<void> => {
 }
 
 const buildDistribution = async (): Promise<void> => {
-  console.log("rebuilding sites ...")
+  const startTime = Bun.nanoseconds();
+  
   await checkDirectory(PATH_ENTRY_DIR);
   await checkDirectory(PATH_DIST_DIR);
 
   const markdownPaths: string[] = await getFilePaths(PATH_CONTENT_DIR);
-  const parsedFiles: Content[] = await parseMarkdownFiles(markdownPaths);
+  const parsedFiles: Content[] = await extractContents(markdownPaths);
 
   await buildPostHtmls(parsedFiles);
   await buildHomeHtmls(parsedFiles);
 
   const distPaths: string[] = await getFilePaths(PATH_DIST_DIR);
   ROUTES = mapLocalRoute(distPaths);
+
+  const endTime = Bun.nanoseconds()
+  const timeTaken = (endTime - startTime) / 1e9;
+  console.log(`Rebuilding sites ... Done, ${timeTaken.toFixed(4)}s`)
 }
 
 const debouncedBuildDistribution = debounce(buildDistribution, 1000)
-
 
 await buildDistribution();
 
@@ -63,8 +71,9 @@ watch(
   },
 );
 
+console.log(`Server is listening at port ${PORT}`)
 Bun.serve({
-  port: 11072,
+  port: PORT,
   fetch: function (request: Request): Response {
     const { pathname } = new URL(request.url)
     if (request.method === 'GET' && ROUTES[pathname]) {

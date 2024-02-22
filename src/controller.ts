@@ -1,29 +1,13 @@
-import type { BunFile } from "bun";
 import type { Content } from "../types/Content";
 
 import { 
-  extractFrontmatter, 
   mapContentPerPage, 
   mapHomeLinks 
 } from "./mappers";
+import {
+  simpleMinifier
+} from "./utils";
 import type { HomeRoute } from "../types/HomeRoute";
-
-export const simpleMinifier = (html: string): string => {
-  return html
-    .replace(/[\n\r\s\t]+/g, ' ')
-    .replace(/<!--[\s\S]*?-->/g, '')
-    .replace(/>\s+</g, '><').trim()
-}
-
-export const parseMarkdownFiles = async (markdownPaths: string[]): Promise<Content[]> => {
-  const parsedFiles: Promise<Content>[] = markdownPaths.map(async (mdpath) => {
-    const file: BunFile = Bun.file(mdpath);
-    const fileText: string = await file.text()
-    return extractFrontmatter(fileText)
-  })
-
-  return Promise.all(parsedFiles)
-}
 
 export const writePostHtmls = async (contents: Content[], entryDir: string, distDir: string): Promise<void> => {
   const PostPage = await import(`${entryDir}/ui/post.ts`);

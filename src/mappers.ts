@@ -1,9 +1,21 @@
-import { convertMdToHtml } from "./converter";
+import type { BunFile } from "bun";
 
+import { convertMdToHtml } from "./converter";
 import { perPage, blog } from "../constants";
+
 import type { Content } from "../types/Content";
 import type { HomeRoute } from "../types/HomeRoute";
 import type { LocalRoute } from "../types/LocalRoute";
+
+export const extractContents = async (markdownPaths: string[]): Promise<Content[]> => {
+  const parsedFiles: Promise<Content>[] = markdownPaths.map(async (mdpath) => {
+    const file: BunFile = Bun.file(mdpath);
+    const fileText: string = await file.text()
+    return extractFrontmatter(fileText)
+  })
+
+  return Promise.all(parsedFiles)
+}
 
 export const extractFrontmatter = (markdown: string): Content => {
   const delimiter: string = '---';

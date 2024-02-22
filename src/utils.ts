@@ -7,3 +7,10 @@ export const debounce = <T extends (...args: any[]) => any>(callback: T, wait: n
     }, wait);
   };
 };
+
+export const simpleMinifier = (html: string): string => {
+  return html
+    .replace(/[\n\r\s\t]+/g, ' ')
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/>\s+</g, '><').trim()
+}
