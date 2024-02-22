@@ -17,7 +17,7 @@ const home = (contents: Content[], prev: string, next: string): string => String
       ${contents.map((obj, index) => {
         return String.raw`
           <div index="${index}">
-            <a href="/post/${obj.slug}.html">${obj.title}</a>
+            <a href="/post/${obj.slug}">${obj.title}</a>
           </div>
         `
       }).join('')}
