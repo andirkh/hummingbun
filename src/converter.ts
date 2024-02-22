@@ -19,6 +19,9 @@ export const convertMdToHtml = (markdown: string): string => {
   // Replace blockquotes
   markdown = markdown.replace(/^>(.*)$/gm, '<blockquote>$1</blockquote>\n');
 
+  // Replace horizontal rules
+  markdown = markdown.replace(/^---$/gm, '<hr>\n');
+
   // Replace unordered lists
   markdown = markdown.replace(/^-(.*)$/gm, '<li>$1</li>');
 
@@ -43,11 +46,8 @@ export const convertMdToHtml = (markdown: string): string => {
   // Replace links
   markdown = markdown.replace(/\[(.+?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
 
-  // Replace horizontal rules
-  markdown = markdown.replace(/^---$/gm, '<hr>\n');
-
   // Replace paragraphs
-  markdown = markdown.replace(/\n([^<\n].*?)\n/g, '<p>$1</p>\n');
+  markdown = markdown.replace(/^\s*([^<\n].*?)\n/gm, '<p>$1</p>\n')
 
   return markdown;
 }
