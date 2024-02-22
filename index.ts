@@ -10,7 +10,11 @@ import {
   writeHomeHtmls,
 } from './src/controller';
 
+import { mapLocalRoute } from './src/mappers';
+
 import type { Content } from './types/Content';
+import type { LocalRoute } from './types/LocalRoute';
+import type { ErrorLike, Server } from 'bun';
 
 const buildPostHtmls = async (contents: Content[]): Promise<void> => {
   await writePostHtmls(contents, PATH_ENTRY_DIR, PATH_DIST_DIR);
@@ -20,7 +24,7 @@ const buildHomeHtmls = async (contents: Content[]): Promise<void> => {
   const sortedContents: Content[] = contents.sort((contentA, contentB) => {
     return contentB.date.getTime() - contentA.date.getTime();
   });
-  
+
   await writeHomeHtmls(sortedContents, PATH_ENTRY_DIR, PATH_DIST_DIR);
 }
 
@@ -35,4 +39,24 @@ const buildDistribution = async (): Promise<void> => {
   await buildHomeHtmls(parsedFiles);
 }
 
-buildDistribution();
+const main = async (): Promise<void> => {
+  await buildDistribution();
+  const distPaths: string[] = await getFilePaths(PATH_DIST_DIR);
+  const availableRoutes: LocalRoute = mapLocalRoute(distPaths);
+
+  Bun.serve({
+    port: 11072,
+    fetch: function (request: Request): Response {
+      const { pathname } = new URL(request.url)
+      if (request.method === 'GET' && availableRoutes[pathname]) {
+        return new Response(Bun.file(availableRoutes[pathname]))
+      }
+      return new Response('No Route')
+    },
+    error: function(): Response {
+      return new Response('404')
+    },
+  })
+}
+
+main();
