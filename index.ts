@@ -26,7 +26,7 @@ import type { LocalRoute } from './types/LocalRoute';
 let ROUTES: LocalRoute = {};
 
 const buildPostHtmls = async (contents: Content[]): Promise<void> => {
-  await writePostHtmls(contents, PATH_ENTRY_DIR, PATH_DIST_DIR);
+  await writePostHtmls(contents);
 }
 
 const buildHomeHtmls = async (contents: Content[]): Promise<void> => {
@@ -34,7 +34,7 @@ const buildHomeHtmls = async (contents: Content[]): Promise<void> => {
     return contentB.date.getTime() - contentA.date.getTime();
   });
 
-  await writeHomeHtmls(sortedContents, PATH_ENTRY_DIR, PATH_DIST_DIR);
+  await writeHomeHtmls(sortedContents);
 }
 
 const buildDistribution = async (): Promise<void> => {
