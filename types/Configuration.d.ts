@@ -1,5 +1,5 @@
 interface Configuration {
-  entryDir: string;
+  blog: string;
   perPage: number;
 }
 
