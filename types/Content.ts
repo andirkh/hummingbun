@@ -1,4 +1,4 @@
-interface ParsedFile {
+interface Content {
   content: string;
   title: string;
   date: Date;
@@ -10,4 +10,4 @@ interface ParsedFile {
   type: 'post' | 'pages'
 }
 
-export { ParsedFile }
+export type { Content }

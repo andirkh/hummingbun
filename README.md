@@ -61,7 +61,7 @@ const footer: string = String.raw`
 <div>footer</div>
 `
 
-const header = (obj: ParsedFile): string => String.raw`
+const header = (obj: Content): string => String.raw`
 <div>${obj.title}</div>
 `
 ```
