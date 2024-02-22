@@ -14,7 +14,7 @@ export const writePostHtmls = async (contents: Content[], entryDir: string, dist
 
   contents.forEach(async (obj: Content) => {
     const html: string = PostPage.default(obj);
-    const htmlFilePath: string = `${distDir}/post/${obj.slug}.html`;
+    const htmlFilePath: string = `${distDir}/post/${obj.slug}/index.html`;
 
     await Bun.write(htmlFilePath, simpleMinifier(html))
   })
