@@ -1,6 +1,5 @@
 interface Configuration {
   entryDir: string;
-  distributionDir: string;
   perPage: number;
 }
 
