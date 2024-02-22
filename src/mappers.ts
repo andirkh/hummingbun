@@ -1,6 +1,8 @@
 import { convertMdToHtml } from "./converter";
 
+import { perPage } from "../constants";
 import type { Content } from "../types/Content";
+import type { HomeRoute } from "../types/HomeRoute";
 
 export const extractFrontmatter = (markdown: string): Content => {
   const delimiter: string = '---';
@@ -45,4 +47,35 @@ export const extractFrontmatter = (markdown: string): Content => {
   }
 
   return yamlData;
+}
+
+export const mapContentPerPage = (sortedContents: Content[]): Content[][] => {
+  const contentLength: number = sortedContents.length;
+  const contentPerPage: Content[][] = [];
+
+  for (let i = 0; i < contentLength; i += perPage) {
+    contentPerPage.push(sortedContents.slice(i, i + perPage));
+  }
+  return contentPerPage
+}
+
+export const mapHomeLinks = (distDir: string, page: number): HomeRoute => {
+  const htmlHomePath: string = `${distDir}/index.html`;
+  const htmlPagePath: string = `${distDir}/page/${page}/index.html`
+  const nextPage: string = `/page/${page + 1}`;
+  const prevPage: string = `/page/${page - 1}`;
+
+  if (page === 1) {
+    return {
+      target: htmlHomePath,
+      prev: '',
+      next: nextPage,
+    }
+  }
+
+  return {
+    target: htmlPagePath,
+    prev: page === 2 ? `/` : prevPage,
+    next: nextPage,
+  }
 }
