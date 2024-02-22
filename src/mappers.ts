@@ -1,8 +1,9 @@
 import { convertMdToHtml } from "./converter";
 
-import { perPage } from "../constants";
+import { perPage, blog } from "../constants";
 import type { Content } from "../types/Content";
 import type { HomeRoute } from "../types/HomeRoute";
+import type { LocalRoute } from "../types/LocalRoute";
 
 export const extractFrontmatter = (markdown: string): Content => {
   const delimiter: string = '---';
@@ -59,7 +60,7 @@ export const mapContentPerPage = (sortedContents: Content[]): Content[][] => {
   return contentPerPage
 }
 
-export const mapHomeLinks = (distDir: string, page: number): HomeRoute => {
+export const mapHomeLinks = (distDir: string, page: number, maxPage: number): HomeRoute => {
   const htmlHomePath: string = `${distDir}/index.html`;
   const htmlPagePath: string = `${distDir}/page/${page}/index.html`
   const nextPage: string = `/page/${page + 1}`;
@@ -76,6 +77,20 @@ export const mapHomeLinks = (distDir: string, page: number): HomeRoute => {
   return {
     target: htmlPagePath,
     prev: page === 2 ? `/` : prevPage,
-    next: nextPage,
+    next: page === maxPage ? '' : nextPage,
   }
+}
+
+
+export const mapLocalRoute = (paths: string[]): LocalRoute => {
+  const routes: LocalRoute[] = paths.map((route: string) => {
+    const keyString: string = route
+      .split(`${blog}/dist`)[1]
+    const key: string =
+      keyString === '/index.html' ? '/' : keyString.replace(/\/index\.html$/, "")
+    const value = route;
+    return { [key]: value }
+  })
+
+  return Object.assign({}, ...routes);
 }
