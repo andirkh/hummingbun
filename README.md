@@ -1,10 +1,11 @@
-# HummingBun: Simple Static Site Generator
-Can a new SSG emerge in a sea of options? Even if it's the 12312392910th SSG out there? Yes
+# HummingBun
 
-![header](readme_header.png)
+Can a new SSG emerge in a sea of options? Even if it's the 12312392910th SSG out there? Yes
 
 ## Background 
 This static site generator is my open source personal project that I work when I have a time. The [story started](https://github.com/andirkh/andirkh/issues/5) when I want to move to another SSG. I used Hugo as my personal web blog, however my `go` and `hugo` version on that blog was 5-6 years behind. So I decided to create a simple and reliable SSG by myself using [Bun](https://bun.sh/). 
+
+![header](readme_header.png)
 
 Bun is javascript runtime written in [Zig](https://ziglang.org/) that execute Javascript or Typescript, a *lingua franca* in the web technology domain. Another motivation is to exercise using Typescript more. The target audience of this SSG would be myself, my wife or even my neighbors. I want to exercise my software development skill by creating a SSG that can be used by non-technical people as well, since I'm the only person who can write a code in my neighborhood. So I think it would be an interesting Journey.
 
@@ -23,10 +24,10 @@ We use that method because our job is not to write a code, but to change a code 
 
 # Learn
 
+![header2](readme_header2.png)
+
 ## How to run 
 The requirement of this Repo is just a Bun runtime (at this time). Make sure you have one in your system. Get the Bun toolkit here when you don't have one: https://bun.sh/docs/installation
-
-![header2](readme_header2.png)
 
 When you starting fresh :
 ```
