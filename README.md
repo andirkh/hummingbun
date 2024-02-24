@@ -1,9 +1,8 @@
 # HummingBun
-
-Can a new SSG emerge in a sea of options? Even if it's the 12312392910th SSG out there? Yes
+"Can a static site generator be simple yet versatile?"
 
 ## Background 
-This static site generator is my open source personal project that I work when I have a time. The [story started](https://github.com/andirkh/andirkh/issues/5) when I want to move to another SSG. I used Hugo as my personal web blog, however my `go` and `hugo` version on that blog was 5-6 years behind. So I decided to create a simple and reliable SSG by myself using [Bun](https://bun.sh/). 
+This static site generator is my personal open source project that I work when I have a time. The [story started](https://github.com/andirkh/andirkh/issues/5) when I want to move to another SSG. I used Hugo as my personal web blog, however my `go` and `hugo` version on that blog was 5-6 years behind. So I decided to create a simple and reliable SSG by myself using [Bun](https://bun.sh/). 
 
 ![header](readme_header.png)
 
