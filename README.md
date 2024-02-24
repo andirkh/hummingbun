@@ -1,6 +1,6 @@
 # HummingBun
 simple static site generator
-![""]("./header.png")
+![header](header.png)
 
 ## Background 
 This static site generator is my open source personal project that I work when I have a time. The [story started](https://github.com/andirkh/andirkh/issues/5) when I want to move to another SSG. I used Hugo as my personal web blog, however my `go` and `hugo` version on that blog was 5-6 years behind. So I decided to create a simple and reliable SSG by myself using [Bun](https://bun.sh/). 
@@ -8,7 +8,7 @@ This static site generator is my open source personal project that I work when I
 Bun is javascript runtime written in [Zig](https://ziglang.org/) that execute Javascript or Typescript, a *lingua franca* in the web technology domain. Another motivation is to exercise using Typescript more. The target audience of this SSG would be myself, my wife or even my neighbors. I want to exercise my software development skill by creating a SSG that can be used by non-technical people as well, since I'm the only person who can write a code in my neighborhood. So I think it would be an interesting Journey.
 
 ## Workflow
-I've got an inspiration by the co-creator of Django Framework that every [new feature should started with a github issue](https://simonwillison.net/2022/Jan/12/how-i-build-a-feature/). He use that method not only for large audience project, but also his 190+ his personal projects. So I decided to implement that methodology as well. The other benefit is to have a documentation ready at first. I treat it as a Jira ticket as well.
+I've got an inspiration by the co-creator of Django Framework that every [new feature should started with a github issue](https://simonwillison.net/2022/Jan/12/how-i-build-a-feature/). He use that method not only for large audience project, but also his 190+ personal projects. So I decided to implement that methodology as well. The other benefit is to have a documentation ready at first. I treat it as a Jira ticket as well.
 
 So, When there's a need to change the code:
 - write a github issue with `story` or `bug` label
