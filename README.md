@@ -21,9 +21,6 @@ So, When there's a need to change the code:
 
 We use that method because our job is not to write a code, but to change a code in a software.
 
-# Learn
-
-![header2](readme_header2.png)
 
 ## How to run 
 The requirement of this Repo is just a Bun runtime (at this time). Make sure you have one in your system. Get the Bun toolkit here when you don't have one: https://bun.sh/docs/installation
@@ -32,6 +29,8 @@ When you starting fresh :
 ```
 bun install
 ```
+
+![header2](readme_header2.png)
 
 Open `configuration.json`, set the entryDir. You can use any folder but the default is example for development.
 The expected blog structure in HummingBun is :
