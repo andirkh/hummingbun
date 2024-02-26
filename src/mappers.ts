@@ -60,8 +60,13 @@ export const extractFrontmatter = (markdown: string): Content => {
       if (key === 'date') {
         yamlData['date'] = new Date(value);
       }
-      if (key === 'draft' && typeof value === 'boolean') {
-        yamlData['draft'] = value;
+
+      if (key === 'draft') {
+        if (value === 'true') {
+          yamlData['draft'] = true
+        } else if (value === 'false') {
+          yamlData['draft'] = false
+        }
       }
 
       if (key === 'type' && (value === TYPE_POST || value === TYPE_PAGE)) {
