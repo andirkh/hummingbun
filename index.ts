@@ -1,12 +1,10 @@
 import { watch } from "fs";
 
 import { debounce } from "./src/utils";
-import { 
-  PATH_ENTRY_DIR, 
-  PORT,
-} from './constants'
-import { compileDistribution, ROUTES } from "./src/build"; 
+import { PATH_ENTRY_DIR, PORT } from './constants'
+import { compileAssets, compileDistribution, ROUTES } from "./src/build"; 
 
+await compileAssets();
 await compileDistribution();
 
 const debouncedCompileDistribution = 
@@ -22,7 +20,7 @@ watch(
   },
 );
 
-console.log(`Server is listening at port ${PORT}`)
+console.log(`Server is listening at PORT: ${PORT}`)
 Bun.serve({
   port: PORT,
   fetch: function (request: Request): Response {

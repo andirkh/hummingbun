@@ -1,13 +1,11 @@
 import {
-  checkDirectory,
-  getFilePaths
-} from './fileExplorer'
-import {
   writePostHtmls,
   writeHomeHtmls,
   writeCategoriesHtml,
   writeSinglePages,
+  writeAssets,
 } from './writer';
+
 import { 
   mapLocalRoute, 
   extractContents 
@@ -17,9 +15,12 @@ import {
   PATH_ENTRY_DIR, 
   PATH_DIST_DIR, 
   PATH_CONTENT_DIR,
+  PATH_ASSET_DIR,
   TYPE_POST,
   TYPE_PAGE,
 } from '../constants'
+
+import { checkDirectory, countPerformance, getFilePaths } from './utils'
 
 import type { Content } from '../types/Content';
 import type { LocalRoute } from '../types/LocalRoute';
@@ -46,11 +47,6 @@ const buildCategoriesHtmls = async (contents: Content[]): Promise<void> => {
   await writeCategoriesHtml(contents);
 }
 
-export const buildLocalRoutes = async(): Promise<void> => {
-  const distPaths: string[] = await getFilePaths(PATH_DIST_DIR);
-  ROUTES = mapLocalRoute(distPaths);
-}
-
 const buildDistribution = async (): Promise<void> => { 
   await checkDirectory(PATH_ENTRY_DIR);
   await checkDirectory(PATH_DIST_DIR);
@@ -63,20 +59,28 @@ const buildDistribution = async (): Promise<void> => {
   const pageContents: Content[] = parsedFiles
     .filter(content => content.type === TYPE_PAGE);
 
-  await buildPostHtmls(postContents);
   await buildHomeHtmls(postContents);
+  await buildPostHtmls(postContents);
   await buildCategoriesHtmls(postContents);
   await buildPagesHtmls(pageContents);
 
   await buildLocalRoutes();
 }
 
-export const compileDistribution = async (): Promise<void> => {
-  const startTime = Bun.nanoseconds();
-  
-  await buildDistribution()
+export const buildLocalRoutes = async(): Promise<void> => {
+  const distPaths: string[] = await getFilePaths(PATH_DIST_DIR);
+  ROUTES = mapLocalRoute(distPaths);
+}
 
-  const endTime = Bun.nanoseconds()
-  const timeTaken = (endTime - startTime) / 1e9;
-  console.log(`Rebuilding sites ... Done, ${timeTaken.toFixed(4)}s`)
+export const buildAssets = async(): Promise<void> => {
+  const assetPaths: string[] = await getFilePaths(PATH_ASSET_DIR);
+  await writeAssets(assetPaths);
+}
+
+export const compileAssets = async (): Promise<void> => {
+  await countPerformance(buildAssets, 'assets');
+}
+
+export const compileDistribution = async (): Promise<void> => {  
+  await countPerformance(buildDistribution, 'distribution');
 }
