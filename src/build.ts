@@ -12,7 +12,6 @@ import {
 } from './mappers';
 
 import {
-  PATH_ENTRY_DIR,
   PATH_DIST_DIR,
   PATH_CONTENT_DIR,
   PATH_ASSET_DIR,
@@ -20,7 +19,7 @@ import {
   TYPE_PAGE,
 } from '../constants'
 
-import { checkDirectory, countPerformance, getFilePaths } from './utils'
+import { countPerformance, getFilePaths } from './utils'
 
 import type { Content } from '../types/Content';
 import type { LocalRoute } from '../types/LocalRoute';

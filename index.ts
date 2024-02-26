@@ -1,6 +1,6 @@
 import { watch } from "fs";
 
-import { debounce } from "./src/utils";
+import { throttle } from "./src/utils";
 import { PATH_ENTRY_DIR, PORT } from './constants'
 import { compileAll, ROUTES } from "./src/build"; 
 
@@ -9,15 +9,15 @@ await compileAll();
 const isLocalServer = Bun.argv.includes('--local-server');
 
 if (isLocalServer) {
-  const debouncedCompileAll = 
-      debounce(compileAll, 1000);
+  const throttledCompileAll = 
+      throttle(compileAll, 10000);
 
   const watcher = watch(
     PATH_ENTRY_DIR,
     { recursive: true },
-    (_event, filename): void => {
+    (event, filename): void => {
       if (typeof filename === 'string' && !filename.startsWith('dist/')) {
-        debouncedCompileAll()
+        throttledCompileAll()
       }
     },
   );

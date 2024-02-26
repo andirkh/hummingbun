@@ -1,12 +1,15 @@
 import { readdir } from "node:fs/promises";
 
-export const debounce = <T extends (...args: any[]) => any>(callback: T, wait: number) => {
-  let timeoutId: any;
-  return (...args: Parameters<T>) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      callback(...args);
-    }, wait);
+export const throttle = <T extends (...args: any[]) => void>(func: T, delay: number) => {
+  let timeout: ReturnType<typeof setTimeout> | null;
+  return (...args: Parameters<T>): void => {
+      const context = this;
+      if (!timeout) {
+          timeout = setTimeout(() => {
+              func.apply(context, args);
+              timeout = null;
+          }, delay);
+      }
   };
 };
 

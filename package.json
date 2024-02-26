@@ -13,8 +13,7 @@
     "build": "bun run index.ts",
     "serve": "bun run index.ts --local-server",
     "hot-serve": "bun --hot run index.ts --local-server",
-    "tailwind": "bunx tailwindcss -i ./example/asset/css/input.css -o ./example/asset/css/output.css --minify",
-    "tailwind:watch": "bunx tailwindcss -i ./example/asset/css/input.css -o ./example/asset/css/output.css --watch --minify"
+    "tailwind": "bunx tailwindcss -i ./example/asset/css/input.css -o ./example/dist/asset/css/output.css --minify"
   },
   "type": "module"
 }
