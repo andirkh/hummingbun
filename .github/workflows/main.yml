@@ -21,6 +21,9 @@ jobs:
 
       - name: Build
         run: bun run build
+      
+      - name: Remove node_modules directory
+        run: rm -rf node_modules
 
       - name: Deploy to GitHub Pages
         run: |
@@ -30,7 +33,6 @@ jobs:
           git rm -rf .
           mv example/dist/* .
           touch .nojekyll
-          git rm -rf node_modules/
           git add .
           git commit -m "Deploy to GitHub Pages"
           git branch -M gh-pages
