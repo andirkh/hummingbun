@@ -26,7 +26,7 @@ export const extractContents = async (markdownPaths: string[]): Promise<Content[
       return extractFrontmatter(fileText)
     })
 
-  return await Promise.all(parsedFiles)
+  return Promise.all(parsedFiles)
 }
 
 export const extractFrontmatter = (markdown: string): Content => {
