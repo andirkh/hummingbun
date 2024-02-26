@@ -30,6 +30,7 @@ jobs:
           git rm -rf .
           mv example/dist/* .
           touch .nojekyll
+          git rm -rf node_modules/
           git add .
           git commit -m "Deploy to GitHub Pages"
           git branch -M gh-pages
