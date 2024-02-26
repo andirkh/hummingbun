@@ -1,12 +1,19 @@
 import type { BunFile } from "bun";
 
 import { convertMdToHtml } from "./converter";
-import { perPage, blog } from "../constants";
+import { 
+  perPage, 
+  blog, 
+  TYPE_POST, 
+  TYPE_PAGE, 
+  RESERVED_SLUG 
+} from "../constants";
 
 import type { Content } from "../types/Content";
 import type { HomeRoute } from "../types/HomeRoute";
 import type { LocalRoute } from "../types/LocalRoute";
 import type { CategoriesMap } from "../types/CategoriesMap";
+import { convertToSlug, generateRandomString } from "./utils";
 
 export const extractContents = async (markdownPaths: string[]): Promise<Content[]> => {
   const mdFileRegex = /\.md$/i
@@ -35,7 +42,7 @@ export const extractFrontmatter = (markdown: string): Content => {
     slug: '',
     image: '',
     draft: false,
-    type: 'post',
+    type: TYPE_POST,
   };
 
   if (parts.length > 2) {
@@ -45,7 +52,10 @@ export const extractFrontmatter = (markdown: string): Content => {
       const [key, value] = line.split(':').map(item => item.trim());
 
       if (key === 'categories') {
-        yamlData['categories'] = JSON.parse(value);
+        const categoriesData = Array.isArray(JSON.parse(value)) 
+          ? JSON.parse(value) 
+          : []
+        yamlData['categories'] = categoriesData;
       }
       if (key === 'date') {
         yamlData['date'] = new Date(value);
@@ -54,8 +64,15 @@ export const extractFrontmatter = (markdown: string): Content => {
         yamlData['draft'] = value;
       }
 
-      if (key === 'type' && (value === 'post' || value === 'pages')) {
+      if (key === 'type' && (value === TYPE_POST || value === TYPE_PAGE)) {
         yamlData['type'] = value;
+      }
+
+      if (key === 'slug') {
+        const slugString: string = convertToSlug(value);
+        yamlData['slug'] = RESERVED_SLUG.includes(slugString) 
+          ? convertToSlug(`${yamlData.title} ${generateRandomString()}`) 
+          : slugString
       }
 
       if (key === 'title' || key === 'author' || key === 'slug' || key === 'image') {
@@ -113,15 +130,11 @@ export const mapLocalRoute = (paths: string[]): LocalRoute => {
 }
 
 export const mapCategories = (contents: Content[]) => {
-  const symbolPattern = /[^a-zA-Z0-9\s]/g
   let categoriesMap: CategoriesMap = {};
   
   contents.forEach(post => {
     post.categories.forEach(category => {
-      const formattedCategory = category
-        .replace(symbolPattern, '')
-        .replace(" ", "-")
-        .toLowerCase()
+      const formattedCategory = convertToSlug(category);
 
       if (categoriesMap[formattedCategory]) {
         categoriesMap[formattedCategory] = 

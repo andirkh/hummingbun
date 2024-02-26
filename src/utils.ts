@@ -14,3 +14,12 @@ export const simpleMinifier = (html: string): string => {
     .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/>\s+</g, '><').trim()
 }
+
+export const convertToSlug = (text: string): string => {
+  const symbolPattern = /[^a-zA-Z0-9\s]/g
+  return text.replace(symbolPattern, '')
+    .replace(" ", "-")
+    .toLowerCase()
+}
+
+export const generateRandomString = (): string => Math.random().toString(36).substring(2, 6).toUpperCase();

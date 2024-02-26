@@ -77,3 +77,14 @@ export const writeEachCategoriesPage = async (categoriesMap: CategoriesMap): Pro
     await Bun.write(path, simpleMinifier(html));
   })
 }
+
+export const writeSinglePages = async (contents: Content[]): Promise<void> => {
+  const PagePage = await import(`${PATH_ENTRY_DIR}/ui/page.ts`);
+
+  contents.forEach(async (obj: Content) => {
+    const html: string = PagePage.default(obj.content, obj.title);
+    const htmlFilePath: string = `${PATH_DIST_DIR}/${obj.slug}/index.html`;
+
+    await Bun.write(htmlFilePath, simpleMinifier(html));
+  })
+}

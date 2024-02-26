@@ -1,3 +1,6 @@
+type PostType = 'post';
+type PageType = 'page';
+
 interface Content {
   content: string;
   title: string;
@@ -7,7 +10,7 @@ interface Content {
   slug: string;
   image: string;
   draft: boolean;
-  type: 'post' | 'pages'
+  type: PostType | PageType
 }
 
-export type { Content }
+export type { Content, PostType, PageType }
