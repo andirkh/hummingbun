@@ -72,7 +72,7 @@ export const writeEachCategoriesPage = async (categoriesMap: CategoriesMap): Pro
         `
     }).join('');
     const path: string = `${PATH_DIST_DIR}/categories/${category}/index.html`;
-    const html: string = PagePage.default(postByCategoryLink, category);
+    const html: string = PagePage.default(postByCategoryLink, `Category: ${category}`);
   
     await Bun.write(path, simpleMinifier(html));
   })

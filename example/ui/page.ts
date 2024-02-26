@@ -11,6 +11,7 @@ const page = (content: string, title: string):string => (String.raw`
   </head>
   <body>
     ${header}
+    <h1>${title}</h1>
     ${content}
     ${footer}
   </body>
