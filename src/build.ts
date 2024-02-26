@@ -54,9 +54,11 @@ const buildDistribution = async (): Promise<void> => {
   const markdownPaths: string[] = await getFilePaths(PATH_CONTENT_DIR);
   const parsedFiles: Content[] = await extractContents(markdownPaths);
 
-  const postContents: Content[] = parsedFiles
+  const contents = parsedFiles.filter(content => content.draft === false);
+
+  const postContents: Content[] = contents
     .filter(content => content.type === TYPE_POST);
-  const pageContents: Content[] = parsedFiles
+  const pageContents: Content[] = contents
     .filter(content => content.type === TYPE_PAGE);
 
   await buildHomeHtmls(postContents);
