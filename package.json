@@ -2,14 +2,17 @@
   "name": "hummingbun",
   "module": "index.ts",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "daisyui": "latest",
+    "tailwindcss": "^3.4.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "scripts": {
     "serve": "bun run index.ts",
-    "hot": "bun --hot run index.ts"
+    "hot": "bun --hot run index.ts",
+    "tailwind:watch": "bunx tailwindcss -i ./example/asset/css/input.css -o ./example/asset/css/output.css --watch --minify"
   },
   "type": "module"
 }
