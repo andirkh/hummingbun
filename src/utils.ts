@@ -1,14 +1,29 @@
 import { readdir } from "node:fs/promises";
 
-export const throttle = <T extends (...args: any[]) => void>(func: T, delay: number) => {
-  let timeout: ReturnType<typeof setTimeout> | null;
-  return (...args: Parameters<T>): void => {
-      const context = this;
-      if (!timeout) {
-          timeout = setTimeout(() => {
-              func.apply(context, args);
-              timeout = null;
-          }, delay);
+export const throttle = (func: (...args: any[]) => Promise<any>, delay: number) => {
+  let lastExecutionTime = 0;
+  let pendingExecution: Promise<any> | null = null;
+
+  return async (...args: any[]) => {
+      const now = Date.now();
+      const elapsedTime = now - lastExecutionTime;
+
+      if (elapsedTime >= delay) {
+          lastExecutionTime = now;
+          return func(...args);
+      } else {
+          if (!pendingExecution) {
+              pendingExecution = new Promise((resolve) => {
+                  const waitTime = delay - elapsedTime;
+                  setTimeout(async () => {
+                      lastExecutionTime = Date.now();
+                      const result = await func(...args);
+                      resolve(result);
+                      pendingExecution = null;
+                  }, waitTime);
+              });
+          }
+          return pendingExecution;
       }
   };
 };
