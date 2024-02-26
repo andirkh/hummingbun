@@ -6,14 +6,14 @@ import {
   writeAssets,
 } from './writer';
 
-import { 
-  mapLocalRoute, 
-  extractContents 
+import {
+  mapLocalRoute,
+  extractContents
 } from './mappers';
 
-import { 
-  PATH_ENTRY_DIR, 
-  PATH_DIST_DIR, 
+import {
+  PATH_ENTRY_DIR,
+  PATH_DIST_DIR,
   PATH_CONTENT_DIR,
   PATH_ASSET_DIR,
   TYPE_POST,
@@ -27,67 +27,47 @@ import type { LocalRoute } from '../types/LocalRoute';
 
 export let ROUTES: LocalRoute = {};
 
-const buildPostHtmls = async (contents: Content[]): Promise<void> => {
-  await writePostHtmls(contents);
-}
-
-const buildPagesHtmls = async (contents: Content[]): Promise<void> => {
-  await writeSinglePages(contents);
-}
-
-const buildHomeHtmls = async (contents: Content[]): Promise<void> => {
-  const sortedContents: Content[] = contents.sort((contentA, contentB) => {
-    return contentB.date.getTime() - contentA.date.getTime();
-  }).filter(content => content.type === TYPE_POST);
-
-  await writeHomeHtmls(sortedContents);
-}
-
-const buildCategoriesHtmls = async (contents: Content[]): Promise<void> => {
-  await writeCategoriesHtml(contents);
-}
-
-const buildDistribution = async (): Promise<void> => { 
+const buildDistribution = async (): Promise<void> => {
   await checkDirectory(PATH_ENTRY_DIR);
   await checkDirectory(PATH_DIST_DIR);
 
   const markdownPaths: string[] = await getFilePaths(PATH_CONTENT_DIR);
   const parsedFiles: Content[] = await extractContents(markdownPaths);
 
-  const contents = parsedFiles.filter(content => content.draft === false);
+  const contents = parsedFiles
+    .filter(content => content.draft === false)
+    .sort((contentA, contentB) => {
+      return contentB.date.getTime() - contentA.date.getTime();
+    });
 
   const postContents: Content[] = contents
     .filter(content => content.type === TYPE_POST);
   const pageContents: Content[] = contents
     .filter(content => content.type === TYPE_PAGE);
 
-  await buildHomeHtmls(postContents);
-  await buildPostHtmls(postContents);
-  await buildCategoriesHtmls(postContents);
-  await buildPagesHtmls(pageContents);
-
-  await buildLocalRoutes();
+  await writeHomeHtmls(postContents);
+  await writePostHtmls(postContents);
+  await writeCategoriesHtml(postContents);
+  await writeSinglePages(pageContents);
 }
 
-export const buildLocalRoutes = async(): Promise<void> => {
+export const buildLocalRoutes = async (): Promise<void> => {
   const distPaths: string[] = await getFilePaths(PATH_DIST_DIR);
   ROUTES = mapLocalRoute(distPaths);
 }
 
-export const buildAssets = async(): Promise<void> => {
+export const buildAssets = async (): Promise<void> => {
   const assetPaths: string[] = await getFilePaths(PATH_ASSET_DIR);
   await writeAssets(assetPaths);
 }
 
-export const buildCSS = async(): Promise<void> => {
+export const buildCss = async (): Promise<void> => {
   Bun.spawn(["bun", "run", "tailwind"])
 }
 
-export const compileAssets = async (): Promise<void> => {
-  await countPerformance(buildAssets, 'assets');
-}
-
-export const compileDistribution = async (): Promise<void> => {  
+export const compileAll = async (): Promise<void> => {
   await countPerformance(buildDistribution, 'distribution');
-  await buildCSS();
+  await buildCss();
+  await countPerformance(buildAssets, 'assets');
+  await buildLocalRoutes();
 }
