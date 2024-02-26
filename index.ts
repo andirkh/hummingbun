@@ -28,9 +28,9 @@ Bun.serve({
     if (request.method === 'GET' && ROUTES[pathname]) {
       return new Response(Bun.file(ROUTES[pathname]))
     }
-    return new Response('No Route')
+    return new Response(Bun.file(ROUTES['/404']))
   },
   error: function (): Response {
-    return new Response('404')
+    return new Response(Bun.file(ROUTES['/404']))
   },
 })

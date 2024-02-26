@@ -1,4 +1,5 @@
 {
   "blog": "example",
-  "perPage": 3
+  "perPage": 3,
+  "theme": "cupcake"
 }

@@ -4,7 +4,7 @@ date: 2024-04-20
 author: Humming Admin
 categories: ["test", "Main tutorial"]
 slug: lorem-ipsum-5
-image: /asset/img/bun-wikipedia.jpeg
+image: /asset/img/5.jpeg
 draft: false
 ---
 

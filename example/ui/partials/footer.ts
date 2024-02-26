@@ -1,6 +1,6 @@
 const footer: string = String.raw`
-<div class="footer">
-  <h1>footer</h1>
+<div class="flex justify-center mt-5 mb-3">
+  <span class="text-sm">humming bun 2024 by @andirkh</span>
 </div>
 `
 

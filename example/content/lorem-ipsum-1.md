@@ -4,7 +4,7 @@ date: 2024-04-16
 author: Humming Admin
 categories: ["test"]
 slug: lorem-ipsum-1
-image: /asset/img/bun-wikipedia.jpeg
+image: /asset/img/1.jpeg
 draft: false
 ---
 Lorem 12 ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac auctor lectus, faucibus accumsan nisi. 
