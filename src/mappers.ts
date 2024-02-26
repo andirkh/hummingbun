@@ -6,6 +6,7 @@ import { perPage, blog } from "../constants";
 import type { Content } from "../types/Content";
 import type { HomeRoute } from "../types/HomeRoute";
 import type { LocalRoute } from "../types/LocalRoute";
+import type { CategoriesMap } from "../types/CategoriesMap";
 
 export const extractContents = async (markdownPaths: string[]): Promise<Content[]> => {
   const mdFileRegex = /\.md$/i
@@ -109,4 +110,27 @@ export const mapLocalRoute = (paths: string[]): LocalRoute => {
   })
 
   return Object.assign({}, ...routes);
+}
+
+export const mapCategories = (contents: Content[]) => {
+  const symbolPattern = /[^a-zA-Z0-9\s]/g
+  let categoriesMap: CategoriesMap = {};
+  
+  contents.forEach(post => {
+    post.categories.forEach(category => {
+      const formattedCategory = category
+        .replace(symbolPattern, '')
+        .replace(" ", "-")
+        .toLowerCase()
+
+      if (categoriesMap[formattedCategory]) {
+        categoriesMap[formattedCategory] = 
+          [...categoriesMap[formattedCategory], post]
+      } else {
+        categoriesMap[formattedCategory] = [post]
+      }
+    })
+  })
+
+  return categoriesMap;
 }

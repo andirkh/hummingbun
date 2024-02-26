@@ -1,8 +1,8 @@
 ---
 title: Our Supported Markdown
 date: 2024-04-20
-author: 'Humming Admin'
-categories: ["test"]
+author: Humming Admin
+categories: ["test", "Main tutorial"]
 slug: lorem-ipsum-5
 image: '/img/bun-wikipedia.jpeg'
 draft: false

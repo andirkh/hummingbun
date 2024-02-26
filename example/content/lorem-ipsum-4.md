@@ -1,8 +1,8 @@
 ---
 title: Lorem Ipsum 4
 date: 2024-04-19
-author: 'Humming Admin'
-categories: ["test"]
+author: Humming Admin
+categories: ["test", "Hello, Goodbye!"]
 slug: lorem-ipsum-4
 image: '/img/bun-wikipedia.jpeg'
 draft: false

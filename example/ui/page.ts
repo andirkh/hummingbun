@@ -1,4 +1,7 @@
-const page: string = String.raw`
+import footer from './partials/footer'
+import header from './partials/header'
+
+const page = (content: string, title: string):string => (String.raw`
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -7,9 +10,12 @@ const page: string = String.raw`
     <title>Home</title>
   </head>
   <body>
-    <p>Main content</p>
+    ${header}
+    <h1>${title}</h1>
+    ${content}
+    ${footer}
   </body>
   </html>
-`
+`)
 
 export default page;

@@ -1,8 +1,8 @@
 ---
 title: Lorem Ipsum 2
 date: 2024-04-17
-author: 'Humming Admin'
-categories: ["test"]
+author: Humming Admin
+categories: ["test", "test2"]
 slug: lorem-ipsum-2
 image: '/img/bun-wikipedia.jpeg'
 draft: false
