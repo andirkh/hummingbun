@@ -28,9 +28,6 @@ import type { LocalRoute } from '../types/LocalRoute';
 export let ROUTES: LocalRoute = {};
 
 const buildDistribution = async (): Promise<void> => {
-  await checkDirectory(PATH_ENTRY_DIR);
-  await checkDirectory(PATH_DIST_DIR);
-
   const markdownPaths: string[] = await getFilePaths(PATH_CONTENT_DIR);
   const parsedFiles: Content[] = await extractContents(markdownPaths);
 
