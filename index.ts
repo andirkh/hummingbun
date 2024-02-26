@@ -15,7 +15,7 @@ if (isLocalServer) {
   const watcher = watch(
     PATH_ENTRY_DIR,
     { recursive: true },
-    (event, filename): void => {
+    (_event, filename): void => {
       if (typeof filename === 'string' && !filename.startsWith('dist/')) {
         throttledCompileAll()
       }

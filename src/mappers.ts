@@ -75,6 +75,7 @@ export const extractFrontmatter = (markdown: string): Content => {
 
       if (key === 'slug') {
         const slugString: string = convertToSlug(value);
+
         yamlData['slug'] = RESERVED_SLUG.includes(slugString) 
           ? convertToSlug(`${yamlData.title} ${generateRandomString()}`) 
           : slugString

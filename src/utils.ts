@@ -40,10 +40,11 @@ export const simpleMinifier = (html: string): string => {
 }
 
 export const convertToSlug = (text: string): string => {
-  const symbolPattern = /[^a-zA-Z0-9\s]/g
-  return text.replace(symbolPattern, '')
+  const symbolPattern = /[^a-zA-Z0-9-]/g
+  return text
     .replace(" ", "-")
     .toLowerCase()
+    .replace(symbolPattern, '')
 }
 
 export const generateRandomString = (): string => Math.random().toString(36).substring(2, 6).toUpperCase();
