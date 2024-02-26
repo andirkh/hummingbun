@@ -4,7 +4,7 @@ date: 2024-04-18
 author: Humming Admin
 categories: ["test", "test2"]
 slug: lorem-ipsum-3
-image: '/img/bun-wikipedia.jpeg'
+image: /asset/img/bun-wikipedia.jpeg
 draft: false
 ---
 Lorem 3 ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac auctor lectus, faucibus accumsan nisi. Curabitur sed porttitor augue, id accumsan risus. Ut commodo felis odio, sed cursus dolor ornare in. In quis tellus nulla. Quisque et enim leo. Donec ut ante et felis vehicula vestibulum aliquam eget nulla. In mollis laoreet felis, sit amet aliquam ipsum fermentum tincidunt. 

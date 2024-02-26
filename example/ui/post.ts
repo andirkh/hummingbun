@@ -1,12 +1,12 @@
 import type { Content } from "../../types/Content";
+import meta from "./partials/meta";
 
 const post = (obj: Content): string => {
     return String.raw`
       <!DOCTYPE html>
       <html lang="en">
       <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        ${meta}
         <title>${obj.title}</title>
       </head>
       <body>

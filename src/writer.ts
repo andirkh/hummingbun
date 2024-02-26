@@ -6,10 +6,11 @@ import {
   mapHomeLinks 
 } from "./mappers";
 import {
+  hasFileExtension,
   simpleMinifier
 } from "./utils";
 import type { HomeRoute } from "../types/HomeRoute";
-import { PATH_ENTRY_DIR, PATH_DIST_DIR } from "../constants";
+import { PATH_ENTRY_DIR, PATH_DIST_DIR, PATH_ASSET_DIR, PATH_ASSET_DIST_DIR } from "../constants";
 import type { CategoriesMap } from "../types/CategoriesMap";
 
 export const writePostHtmls = async (contents: Content[]): Promise<void> => {
@@ -86,5 +87,15 @@ export const writeSinglePages = async (contents: Content[]): Promise<void> => {
     const htmlFilePath: string = `${PATH_DIST_DIR}/${obj.slug}/index.html`;
 
     await Bun.write(htmlFilePath, simpleMinifier(html));
+  })
+}
+
+export const writeAssets = async (paths: string[]): Promise<void> => {
+  paths.forEach(async (path) => {
+    const file = Bun.file(path);
+    const filename = path.replace(`${PATH_ASSET_DIR}/`, '')
+    if (hasFileExtension(filename)) {
+      await Bun.write(`${PATH_ASSET_DIST_DIR}/${filename}`, file);
+    }
   })
 }

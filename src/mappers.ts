@@ -75,8 +75,8 @@ export const extractFrontmatter = (markdown: string): Content => {
           : slugString
       }
 
-      if (key === 'title' || key === 'author' || key === 'slug' || key === 'image') {
-        yamlData[key] = value;
+      if (key === 'title' || key === 'author' || key === 'image') {
+        yamlData[key] = String(value).replace(/['"`]/g, '');
       }
     });
   }

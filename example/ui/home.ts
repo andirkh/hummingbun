@@ -1,5 +1,6 @@
 import footer from './partials/footer'
 import header from './partials/header'
+import meta from './partials/meta';
 
 import type { Content } from '../../types/Content';
 
@@ -7,8 +8,7 @@ const home = (contents: Content[], prev: string, next: string): string => String
   <!DOCTYPE html>
   <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ${meta}
     <title>Home</title>
   </head>
   <body>
