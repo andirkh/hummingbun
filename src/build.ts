@@ -77,10 +77,15 @@ export const buildAssets = async(): Promise<void> => {
   await writeAssets(assetPaths);
 }
 
+export const buildCSS = async(): Promise<void> => {
+  Bun.spawn(["bun", "run", "tailwind"])
+}
+
 export const compileAssets = async (): Promise<void> => {
   await countPerformance(buildAssets, 'assets');
 }
 
 export const compileDistribution = async (): Promise<void> => {  
   await countPerformance(buildDistribution, 'distribution');
+  await buildCSS();
 }
