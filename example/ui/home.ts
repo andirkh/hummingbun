@@ -18,6 +18,7 @@ const home = (contents: Content[], prev: string, next: string): string => String
         return String.raw`
           <div index="${index}">
             <a href="/post/${obj.slug}">${obj.title}</a>
+            <br />
           </div>
         `
       }).join('')}

@@ -7,7 +7,8 @@ import {
 import {
   writePostHtmls,
   writeHomeHtmls,
-} from './src/controller';
+  writeCategoriesHtml,
+} from './src/writer';
 import { 
   mapLocalRoute, 
   extractContents 
@@ -37,6 +38,10 @@ const buildHomeHtmls = async (contents: Content[]): Promise<void> => {
   await writeHomeHtmls(sortedContents);
 }
 
+const buildCategoriesHtmls = async (contents: Content[]): Promise<void> => {
+  await writeCategoriesHtml(contents);
+}
+
 const buildDistribution = async (): Promise<void> => {
   const startTime = Bun.nanoseconds();
   
@@ -48,6 +53,7 @@ const buildDistribution = async (): Promise<void> => {
 
   await buildPostHtmls(parsedFiles);
   await buildHomeHtmls(parsedFiles);
+  await buildCategoriesHtmls(parsedFiles);
 
   const distPaths: string[] = await getFilePaths(PATH_DIST_DIR);
   ROUTES = mapLocalRoute(distPaths);
