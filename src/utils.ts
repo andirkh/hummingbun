@@ -10,8 +10,27 @@ export const debounce = <T extends (...args: any[]) => any>(callback: T, wait: n
   };
 };
 
+const removeRedundantScript = (htmlResult: string): string => {
+  const scriptTags: string[] | null = htmlResult.match(/<script>[\s\S]*?<\/script>/g);
+
+  if (!scriptTags) return htmlResult;
+
+  let result: string = htmlResult.replace(/<script>[\s\S]*?<\/script>/g, '');
+  const uniqueScriptTags: string[] = [];
+
+  scriptTags.forEach(tag => {
+    if (!uniqueScriptTags.includes(tag)) {
+      uniqueScriptTags.push(tag);
+    }
+  });
+  const lastIndex = result.lastIndexOf('</body>');
+
+  result = result.slice(0, lastIndex) + uniqueScriptTags.join('\n') + result.slice(lastIndex)
+  return result
+};
+
 export const simpleMinifier = (html: string): string => {
-  return html
+  return removeRedundantScript(html)
     .replace(/[\n\r\s\t]+/g, ' ')
     .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/>\s+</g, '><').trim()
