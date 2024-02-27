@@ -7,8 +7,9 @@ slug: lorem-ipsum-1
 image: /asset/img/1.jpeg
 draft: false
 ---
-Lorem 12 ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac auctor lectus, faucibus accumsan nisi. 
-Curabitur sed porttitor augue, id accumsan risus. Ut commodo felis odio, sed cursus dolor ornare in. In quis tellus nulla. Quisque et enim leo. Donec ut ante et felis vehicula vestibulum aliquam eget nulla. In mollis laoreet felis, sit amet aliquam ipsum fermentum. 
+
+Lorem 12 ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac auctor lectus, faucibus accumsan nisi.
+Curabitur sed porttitor augue, id accumsan risus. Ut commodo felis odio, sed cursus dolor ornare in. In quis tellus nulla. Quisque et enim leo. Donec ut ante et felis vehicula vestibulum aliquam eget nulla. In mollis laoreet felis, sit amet aliquam ipsum fermentum.
 
 ## Header 2
 

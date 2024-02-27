@@ -1,12 +1,16 @@
-import footer from './partials/footer'
-import header from './partials/header'
+import footer from './partials/footer';
+import header from './partials/header';
 import meta from './partials/meta';
 
 import { theme } from '../../constants';
 
 import type { Content } from '../../types/Content';
 
-const home = (contents: Content[], prev: string, next: string): string => String.raw`
+const home = (
+  contents: Content[],
+  prev: string,
+  next: string,
+): string => String.raw`
   <!DOCTYPE html>
   <html lang="en" theme="${theme}">
   <head>
@@ -16,8 +20,9 @@ const home = (contents: Content[], prev: string, next: string): string => String
   <body>
     ${header}
     <div class="flex flex-start justify-center my-3 gap-3">
-      ${contents.map((obj, index) => {
-        return String.raw`
+      ${contents
+        .map((obj, index) => {
+          return String.raw`
           <div class="card w-96 bg-base-100 shadow-xl" index="${index}">
             <figure><img src="${obj.image}" alt="Shoes" /></figure>
             <div class="card-body">
@@ -27,8 +32,9 @@ const home = (contents: Content[], prev: string, next: string): string => String
               </a>
             </div>
           </div>
-        `
-      }).join('')}
+        `;
+        })
+        .join('')}
     </div>
     <div class="flex justify-between align-items-center p-3">
       <div>
@@ -41,6 +47,6 @@ const home = (contents: Content[], prev: string, next: string): string => String
     ${footer}
   </body>
   </html>
-`
+`;
 
 export default home;

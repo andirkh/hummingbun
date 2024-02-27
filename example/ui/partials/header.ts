@@ -27,6 +27,6 @@ const header: string = String.raw`
     </button>
   </div>
 </div>
-`
+`;
 
 export default header;

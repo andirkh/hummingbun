@@ -4,4 +4,4 @@ interface HomeRoute {
   prev: string;
 }
 
-export type { HomeRoute }
+export type { HomeRoute };
