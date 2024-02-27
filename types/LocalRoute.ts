@@ -3,4 +3,4 @@
  */
 type LocalRoute = { [key: string]: string };
 
-export type { LocalRoute }
+export type { LocalRoute };

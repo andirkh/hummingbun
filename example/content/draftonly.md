@@ -7,8 +7,9 @@ slug: lorem-ipsum-1
 image: /asset/img/7.jpeg
 draft: true
 ---
-This is Draft dolor sit amet, consectetur adipiscing elit. Curabitur ac auctor lectus, faucibus accumsan nisi. 
-Curabitur sed porttitor augue, id accumsan risus. Ut commodo felis odio, sed cursus dolor ornare in. In quis tellus nulla. Quisque et enim leo. Donec ut ante et felis vehicula vestibulum aliquam eget nulla. In mollis laoreet felis, sit amet aliquam ipsum fermentum. 
+
+This is Draft dolor sit amet, consectetur adipiscing elit. Curabitur ac auctor lectus, faucibus accumsan nisi.
+Curabitur sed porttitor augue, id accumsan risus. Ut commodo felis odio, sed cursus dolor ornare in. In quis tellus nulla. Quisque et enim leo. Donec ut ante et felis vehicula vestibulum aliquam eget nulla. In mollis laoreet felis, sit amet aliquam ipsum fermentum.
 
 ## This is Draft
 

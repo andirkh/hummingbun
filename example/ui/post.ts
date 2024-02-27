@@ -1,12 +1,12 @@
-import type { Content } from "../../types/Content";
-import footer from './partials/footer'
-import header from './partials/header'
+import type { Content } from '../../types/Content';
+import footer from './partials/footer';
+import header from './partials/header';
 import meta from './partials/meta';
 
 import { theme } from '../../constants';
 
 const post = (obj: Content): string => {
-    return String.raw`
+  return String.raw`
       <!DOCTYPE html>
       <html lang="en" theme="${theme}">
       <head>
@@ -23,7 +23,7 @@ const post = (obj: Content): string => {
         ${footer}
       </body>
       </html>
-    `
-}
+    `;
+};
 
 export default post;

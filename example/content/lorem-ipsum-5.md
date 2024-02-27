@@ -8,29 +8,35 @@ image: /asset/img/5.jpeg
 draft: false
 ---
 
-Here's our supported Markdown
+Here"s our supported Markdown
 
 # heading 1
+
 ## heading 2
+
 ### heading 3
+
 #### heading 4
+
 ##### heading 5
+
 ###### heading 6
 
 ## Emphasis
 
 bold :
+
 - **This is bold text**
 
 italic:
-- *This is italic text*
+
+- _This is italic text_
 
 strikethrough:
+
 - ~~Strikethrough~~
 
-
 ## Blockquotes
-
 
 > Blockquotes can also be nested...
 
@@ -50,7 +56,7 @@ Ordered
 
 ## Code
 
-Inline `code` 
+Inline `code`
 
 ## block code
 
@@ -60,7 +66,7 @@ Block code
 
 ## Syntax highlighting
 
-``` js
+```js
 var foo = function (bar) {
   return bar++;
 };

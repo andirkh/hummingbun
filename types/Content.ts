@@ -10,7 +10,7 @@ interface Content {
   slug: string;
   image: string;
   draft: boolean;
-  type: PostType | PageType
+  type: PostType | PageType;
 }
 
-export type { Content, PostType, PageType }
+export type { Content, PostType, PageType };
