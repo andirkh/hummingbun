@@ -177,3 +177,5 @@ dist
 .dist/
 
 output.css
+
+.vscode/
