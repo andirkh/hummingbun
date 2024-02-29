@@ -44,7 +44,9 @@ const home = (
         ${next ? String.raw`<a href="${next}"><button class="btn">Next</button></a>` : ''}
       </div>
     </div>
-    ${footer}
+    <div class="mt-5">
+      ${footer}
+    </div>
   </body>
   </html>
 `;

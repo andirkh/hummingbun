@@ -13,9 +13,11 @@ const page = (content: string, title: string): string => String.raw`
   </head>
   <body>
     ${header}
-    <h2>${title}</h2>
-    ${content}
-    ${footer}
+    <div class="card bg-base-100">
+      <h2>${title}</h2>
+      ${content}
+      ${footer}
+    </div>
   </body>
   </html>
 `;

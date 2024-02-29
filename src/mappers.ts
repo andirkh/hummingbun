@@ -1,6 +1,6 @@
 import type { BunFile } from 'bun';
 
-import { convertMdToHtml } from './converter';
+import { convertUsingMarkdownIt } from './converter';
 import {
   perPage,
   blog,
@@ -35,8 +35,9 @@ export const extractFrontmatter = (markdown: string): Content => {
   const delimiter: string = '---';
   const parts: string[] = markdown.split(delimiter);
 
+  const markdownString: string = parts.slice(2).concat().join();
   const yamlData: Content = {
-    content: convertMdToHtml(parts.slice(2).concat().join()),
+    content: convertUsingMarkdownIt(markdownString),
     title: '',
     date: new Date('1994-01-31T00:00:00Z'),
     author: '',
