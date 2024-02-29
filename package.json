@@ -16,5 +16,11 @@
     "hot-serve": "bun --hot run index.ts --local-server",
     "tailwind": "bunx tailwindcss -i ./example/asset/css/input.css -o ./example/dist/asset/css/output.css --minify"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "highlight.js": "^11.9.0",
+    "html-minifier": "^4.0.0",
+    "markdown-it": "^14.0.0"
+  }
 }

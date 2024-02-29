@@ -1,118 +1,138 @@
 import { expect, test, describe } from 'bun:test';
 
-import { convertMdToHtml } from '../src/converter';
+import { convertManually, convertUsingMarkdownIt } from '../src/converter';
 
 const removeTabsInString = (multilineString: string): string => {
   return multilineString.replace(/^\s+/gm, '');
 };
 
-describe('Convert Markdown to HTML', () => {
-  test('heading 1', () => {
-    expect(convertMdToHtml('# hello')).toBe('<h1>hello</h1>');
-  });
+type TestData = {
+  [key: string]: {
+    text: string;
+    result: string;
+  };
+};
 
-  test('heading 2', () => {
-    expect(convertMdToHtml('## hello')).toBe('<h2>hello</h2>');
-  });
+const testCases: TestData = {
+  'heading 1': {
+    text: '# hello',
+    result: '<h1>hello</h1>\n',
+  },
+  'heading 2': {
+    text: '## hello',
+    result: '<h2>hello</h2>\n',
+  },
+  'heading 3': {
+    text: '### hello',
+    result: '<h3>hello</h3>\n',
+  },
+  'heading 4': {
+    text: '#### hello',
+    result: '<h4>hello</h4>\n',
+  },
+  'heading 5': {
+    text: '##### hello',
+    result: '<h5>hello</h5>\n',
+  },
+  'heading 6': {
+    text: '###### hello',
+    result: '<h6>hello</h6>\n',
+  },
+  'block text': {
+    text: '**hello**',
+    result: '<p><strong>hello</strong></p>\n',
+  },
+  'italic text': {
+    text: '*hello*',
+    result: '<p><em>hello</em></p>\n',
+  },
+  'strike through': {
+    text: '~~hello~~',
+    result: '<p><s>hello</s></p>\n',
+  },
+  'unordered list': {
+    text: '- hello',
+    result: '<ul>\n<li>hello</li>\n</ul>\n',
+  },
+  'ordered list': {
+    text: String.raw`
+    1. hello
+    2. llo
+    3. velo
+  `,
+    result: '<pre><code>1. hello\n2. llo\n3. velo\n</code></pre>\n',
+  },
+  'code block': {
+    text: removeTabsInString(`
+      \`\`\`
+      cd memo
+      \`\`\``),
+    result: '<pre><code>cd memo\n</code></pre>\n',
+  },
+  'code bloc multiline js': {
+    text: `
+\`\`\`js
+var foo = function (bar) {
+  return bar++;
+};
 
-  test('heading 3', () => {
-    expect(convertMdToHtml('### hello')).toBe('<h3>hello</h3>');
-  });
-
-  test('heading 4', () => {
-    expect(convertMdToHtml('#### hello')).toBe('<h4>hello</h4>');
-  });
-
-  test('heading 5', () => {
-    expect(convertMdToHtml('##### hello')).toBe('<h5>hello</h5>');
-  });
-
-  test('heading 6', () => {
-    expect(convertMdToHtml('###### hello')).toBe('<h6>hello</h6>');
-  });
-
-  test('block text', () => {
-    expect(convertMdToHtml('**hello**')).toBe('<strong>hello</strong>');
-  });
-
-  test('italic text', () => {
-    expect(convertMdToHtml('*hello*')).toBe('<em>hello</em>');
-  });
-
-  test('strike through', () => {
-    expect(convertMdToHtml('~~hello~~')).toBe('<del>hello</del>');
-  });
-
-  test('unordered list', () => {
-    expect(convertMdToHtml('- hello')).toBe('<li> hello</li>');
-  });
-
-  test('ordered list', () => {
-    const text: string = removeTabsInString(String.raw`
-      1. hello
-      2. llo
-      3. velo
-    `);
-
-    expect(convertMdToHtml(text)).toBe(
-      '<ol><li>hello</li><li>llo</li><li>velo</li></ol>\n',
-    );
-  });
-
-  test('codeblock', () => {
-    const text: string = removeTabsInString(`
-    \`\`\`
-    cd memo
-    \`\`\``);
-    expect(convertMdToHtml(text)).toBe('<pre><code>cd memo</code></pre>');
-  });
-
-  test('inline block', () => {
-    const text: string = removeTabsInString(`hello \`mycode\``);
-    expect(convertMdToHtml(text)).toBe('hello <code>mycode</code>');
-  });
-
-  test('images', () => {
-    const text: string = removeTabsInString(
-      `![funny picture](http://funny.picture.com/asd)`,
-    );
-    expect(convertMdToHtml(text)).toBe(
-      `<img alt="funny picture" src="http://funny.picture.com/asd">`,
-    );
-  });
-
-  test('links', () => {
-    const text: string = removeTabsInString(
-      `[my picture link](http://funny.picture.com/asd)`,
-    );
-    expect(convertMdToHtml(text)).toBe(
-      `<a href="http://funny.picture.com/asd">my picture link</a>`,
-    );
-  });
-
-  test('horizonal rules', () => {
-    const text: string = removeTabsInString(`---`);
-    expect(convertMdToHtml(text)).toBe(`<hr>\n`);
-  });
-
-  test('paragraph', () => {
-    const text: string = removeTabsInString(`
+console.log(foo(5));
+\`\`\``,
+    result:
+      '<pre><code class="language-js"><span class="hljs-keyword">var</span> foo = <span class="hljs-keyword">function</span> (<span class="hljs-params">bar</span>) {\n  <span class="hljs-keyword">return</span> bar++;\n};\n\n<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">foo</span>(<span class="hljs-number">5</span>));\n</code></pre>\n',
+  },
+  'inline block': {
+    text: removeTabsInString(`hello \`mycode\``),
+    result: '<p>hello <code>mycode</code></p>\n',
+  },
+  'image no title': {
+    text: removeTabsInString(`![funny picture](http://funny.picture.com/asd)`),
+    result: `<p><img src=\"http://funny.picture.com/asd\" alt=\"funny picture\"></p>\n`,
+  },
+  'image with title title': {
+    text: removeTabsInString(
+      `![funny picture](http://funny.picture.com/asd "my title")`,
+    ),
+    result: `<p><img src=\"http://funny.picture.com/asd\" alt=\"funny picture\" title=\"my title\"></p>\n`,
+  },
+  'link no title': {
+    text: removeTabsInString(`[my picture link](http://funny.picture.com/asd)`),
+    result: `<p><a href=\"http://funny.picture.com/asd\">my picture link</a></p>\n`,
+  },
+  'link with title': {
+    text: removeTabsInString(
+      `[my picture link](http://funny.picture.com/asd "my title")`,
+    ),
+    result: `<p><a href=\"http://funny.picture.com/asd\" title=\"my title\">my picture link</a></p>\n`,
+  },
+  'horizontal rules': {
+    text: removeTabsInString(`---`),
+    result: `<hr>\n`,
+  },
+  'paragpraph inline': {
+    text: removeTabsInString(`
     This is the first paragraph.
-    `);
-    expect(convertMdToHtml(text)).toBe(`<p>This is the first paragraph.</p>\n`);
-  });
-
-  test('multi line paragraph', () => {
-    const text: string = removeTabsInString(`
+    `),
+    result: `<p>This is the first paragraph.</p>\n`,
+  },
+  'paragraph multi line': {
+    text: removeTabsInString(`
     This is the first paragraph.
 
     This is the second paragraph, 
     which spans multiple lines.
 
     And here is the third paragraph.
-    `);
-    expect(convertMdToHtml(text)).toBe(
-      `<p>This is the first paragraph.</p>\n<p>This is the second paragraph, </p>\n<p>which spans multiple lines.</p>\n<p>And here is the third paragraph.</p>\n`,
-    );
+    `),
+    result: `<p>This is the first paragraph.\nThis is the second paragraph,\nwhich spans multiple lines.\nAnd here is the third paragraph.</p>\n`,
+  },
+};
+
+describe('Convert Markdown to HTML', () => {
+  Object.keys(testCases).forEach((t) => {
+    const { text, result } = testCases[t];
+    test(t, () => {
+      expect(convertUsingMarkdownIt(text)).toBe(result);
+    });
   });
 });

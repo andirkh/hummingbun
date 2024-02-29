@@ -1,7 +1,9 @@
 const footer: string = String.raw`
-<div class="flex justify-center mt-5 mb-3">
-  <span class="text-sm">humming bun 2024 by @andirkh</span>
-</div>
+<footer class="footer footer-center p-4 bg-base-200 text-base-content">
+  <aside class="py-5 mt-5">
+    <p>HummingBun 2024 - by @andirkh</p>
+  </aside>
+</footer>
 `;
 
 export default footer;
