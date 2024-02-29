@@ -1,6 +1,8 @@
 ![header](readme_header.png)
 
+<div style="text-align: center;">
 Simple Static Generator, built upon Bun. a tool to make a blog by writing markdown files.
+</div>
 
 ## How to Start
 
