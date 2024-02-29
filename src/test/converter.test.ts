@@ -1,6 +1,6 @@
 import { expect, test, describe } from 'bun:test';
 
-import { convertManually, convertUsingMarkdownIt } from '../src/converter';
+import { convertUsingMarkdownIt } from '../converter';
 
 const removeTabsInString = (multilineString: string): string => {
   return multilineString.replace(/^\s+/gm, '');

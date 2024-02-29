@@ -130,7 +130,7 @@ export const mapHomeLinks = (
 
 export const mapLocalRoute = (paths: string[]): LocalRoute => {
   const routes: LocalRoute[] = paths.map((route: string) => {
-    const keyString: string = route.split(`${blog}/dist`)[1];
+    const keyString: string = route.split(`/dist`)[1];
     const key: string =
       keyString === '/index.html'
         ? '/'

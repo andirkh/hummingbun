@@ -2,7 +2,11 @@ import { blog } from './configuration.json';
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [`./${blog}/**/*.{html,js,ts}`],
+  content: [
+    `./dist/**/*.{html,js,ts}`,
+    `./ui/**/*.{html,js,ts}`,
+    `./ui/*.{html,js,ts}`
+  ],
   plugins: [
     require('@tailwindcss/typography'),
     require('daisyui')

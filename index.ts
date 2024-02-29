@@ -15,7 +15,7 @@ if (isLocalServer) {
     PATH_ENTRY_DIR,
     { recursive: true },
     (_event, filename): void => {
-      if (typeof filename === 'string' && !filename.startsWith('dist/')) {
+      if (typeof filename === 'string') {
         throttledCompileAll();
       }
     },

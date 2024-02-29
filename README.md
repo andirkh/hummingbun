@@ -8,8 +8,6 @@ Can a static site generator be simple yet versatile?
 
 The requirement of this Repo is just a Bun runtime (at this time). Make sure you have one in your system. Get the Bun toolkit here when you don't have one: https://bun.sh/docs/installation
 
-![header2](readme_header2.png)
-
 When you starting fresh :
 
 ```
@@ -68,3 +66,5 @@ We recommend to use VSCode (it's free) and install the following extension:
 3. hypermedia admin page and server with htmx ⏳ (week 1)
 4. build for unix like system and windows (week 2)
 5. release
+
+![header2](readme_header2.png)

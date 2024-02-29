@@ -2,11 +2,11 @@ import footer from './partials/footer';
 import header from './partials/header';
 import meta from './partials/meta';
 
-import { theme } from '../../constants';
+import { theme } from '../constants';
 
-import type { Content } from '../../types/Content';
+import type { Content } from '../types/Content';
 
-const home = (
+const HomeUI = (
   contents: Content[],
   prev: string,
   next: string,
@@ -51,4 +51,4 @@ const home = (
   </html>
 `;
 
-export default home;
+export default HomeUI;

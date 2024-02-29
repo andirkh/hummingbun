@@ -1,13 +1,13 @@
-import type { Content } from '../../types/Content';
+import type { Content } from '../types/Content';
 import footer from './partials/footer';
 import header from './partials/header';
 import meta from './partials/meta';
 
-import { theme } from '../../constants';
+import { theme } from '../constants';
 
-import { getFormattedDate } from '../../src/utils';
+import { getFormattedDate } from '../src/utils';
 
-const post = (obj: Content): string => {
+const PostUI = (obj: Content): string => {
   return String.raw`
       <!DOCTYPE html>
       <html lang="en" theme="${theme}">
@@ -34,4 +34,4 @@ const post = (obj: Content): string => {
     `;
 };
 
-export default post;
+export default PostUI;
