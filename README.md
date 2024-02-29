@@ -1,7 +1,5 @@
 ![header](readme_header.png)
 
-# HummingBun
-
 Simple Static Generator, built upon Bun. a tool to make a blog by writing markdown files.
 
 ## How to Start
