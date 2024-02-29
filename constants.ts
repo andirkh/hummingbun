@@ -11,6 +11,7 @@ export const PATH_CONTENT_DIR: string = `${PATH_ENTRY_DIR}/content`;
 export const PATH_UI_DIR: string = `${PATH_ENTRY_DIR}/ui`;
 
 export const PATH_ASSET_DIR: string = `${PATH_ENTRY_DIR}/asset`;
+export const PATH_ASSET_DIST_DIR: string = `${PATH_DIST_DIR}/asset`;
 
 export const PORT: number = 11072;
 

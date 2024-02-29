@@ -8,7 +8,6 @@ import { mapCategories, mapContentPerPage, mapHomeLinks } from './mappers';
 import { hasFileExtension, simpleMinifier } from './utils';
 import type { HomeRoute } from '../types/HomeRoute';
 import {
-  PATH_ENTRY_DIR,
   PATH_DIST_DIR,
   PATH_ASSET_DIR,
   PATH_ASSET_DIST_DIR,
