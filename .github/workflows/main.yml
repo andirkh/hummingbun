@@ -33,6 +33,7 @@ jobs:
           git rm -rf .
           mv ./dist/* .
           touch .nojekyll
+          echo "hummingbun.pouffer.com" > CNAME
           git add .
           git commit -m "Deploy to GitHub Pages"
           git branch -M gh-pages
