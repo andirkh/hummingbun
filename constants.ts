@@ -6,7 +6,7 @@ import type { PageType, PostType } from './types/Content';
 export const { blog, perPage, theme }: Configuration = configuration;
 
 export const PATH_ENTRY_DIR: string = `${import.meta.dir}/${blog}`;
-export const PATH_DIST_DIR: string = `${PATH_ENTRY_DIR}/dist`;
+export const PATH_DIST_DIR: string = `${import.meta.dir}/dist`;
 export const PATH_CONTENT_DIR: string = `${PATH_ENTRY_DIR}/content`;
 export const PATH_UI_DIR: string = `${PATH_ENTRY_DIR}/ui`;
 

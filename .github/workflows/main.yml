@@ -21,7 +21,7 @@ jobs:
 
       - name: Build
         run: bun run build
-      
+
       - name: Remove node_modules directory
         run: rm -rf node_modules
 
@@ -31,7 +31,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git checkout --orphan gh-pages
           git rm -rf .
-          mv example/dist/* .
+          mv ./dist/* .
           touch .nojekyll
           git add .
           git commit -m "Deploy to GitHub Pages"
