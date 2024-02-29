@@ -1,8 +1,6 @@
 ![header](readme_header.png)
 
-<center>
 Simple Static Site Generator for everyone, built upon Bun.
-</center>
 
 ## How to Start
 
@@ -22,7 +20,7 @@ bun run serve
 bun run hot-serve
 ```
 
-production build (/dist directory) :
+production build (/dist) :
 
 ```js
 bun run build
