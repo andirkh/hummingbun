@@ -3,7 +3,7 @@ import hljs from 'highlight.js';
 
 export const convertUsingMarkdownIt = (mdString: string): string => {
   const markdown = markdownit({
-    html: false,
+    html: true,
     highlight: function (str: string, lang: string) {
       if (lang && hljs.getLanguage(lang)) {
         try {

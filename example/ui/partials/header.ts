@@ -13,7 +13,7 @@ const header: string = String.raw`
     </div>
   </div>
   <div class="navbar-center">
-    <a class="btn btn-ghost text-xl" href="/">Humming Bun</a>
+    <a class="btn btn-ghost text-xl" href="/">HummingBun</a>
   </div>
   <div class="navbar-end">
     <button class="btn btn-ghost btn-circle">

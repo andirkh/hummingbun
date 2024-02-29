@@ -69,6 +69,18 @@ const testCases: TestData = {
       \`\`\``),
     result: '<pre><code>cd memo\n</code></pre>\n',
   },
+  'code bloc multiline js': {
+    text: `
+\`\`\`js
+var foo = function (bar) {
+  return bar++;
+};
+
+console.log(foo(5));
+\`\`\``,
+    result:
+      '<pre><code class="language-js"><span class="hljs-keyword">var</span> foo = <span class="hljs-keyword">function</span> (<span class="hljs-params">bar</span>) {\n  <span class="hljs-keyword">return</span> bar++;\n};\n\n<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">foo</span>(<span class="hljs-number">5</span>));\n</code></pre>\n',
+  },
   'inline block': {
     text: removeTabsInString(`hello \`mycode\``),
     result: '<p>hello <code>mycode</code></p>\n',
