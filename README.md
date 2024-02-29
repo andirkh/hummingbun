@@ -1,30 +1,27 @@
 # HummingBun
 
-Can a static site generator be simple yet versatile?
+Simple Static Generator, built upon Bun. a tool to make a blog by writing markdown files.
 
 ![header](readme_header.png)
 
-## How to run
+## How to Start
 
-The requirement of this Repo is just a Bun runtime (at this time). Make sure you have one in your system. Get the Bun toolkit here when you don't have one: https://bun.sh/docs/installation
+You need a [Bun](https://bun.sh/docs/installation) runtime. Make sure you have one in your system. 
 
-When you starting fresh :
+Install dependencies :
 
 ```
 bun install
 ```
 
-Open `configuration.json`, set the entryDir. You can use any folder but the default is example for development.
-The expected blog structure in HummingBun is :
+Open `configuration.json`, set the entryDir. You can use any folder, however the default is `example`. Inside that folder, you only need 2 things: content (markdown files) and asset (any asset you like).
 
 ```
 📁 content (md)
-📁 assets (js, css, img)
-📁 ui
-|--- home.ts, page.ts, post.js
-|---- 📁 partial
-|--------- header.ts, footer.ts, side.ts,
+📁 asset (js, css, img)
 ```
+
+How to build and start the server :
 
 ```js
 bun run serve
@@ -33,14 +30,14 @@ bun run serve
 or, use hot-reloading :
 
 ```js
-bun run hot
+bun run hot-serve
 ```
 
-Those command above will generate the static file html.
+Those command above will generate the static file html. If you only want to build the blog, you can use `bun run build`
 
-## How to write partial component
+## How to Update the UI :
 
-The partial component is a part of your html page that is just a multi-line `string`. No templating language such as Pug, Jinja, or Handlebar is needed. You can use `${prop}` to pass the value just like a normal multi-liner string.
+the UI is just a multi-line `string`. as long as you know how to modify string in javascript/typescript, you're good to go 👍. no templating language needed. Here's some example :
 
 ```typescript
 const footer: string = String.raw`
@@ -52,12 +49,14 @@ const header = (obj: Content): string => String.raw`
 `;
 ```
 
+The entry point of the whole blog are HomeUI (home page), PostUI (individual post page), and PageUI (custom page for categories, single page post, etc). If you want to hack more, go to the `/src` folder to update the logic.
+
 ## Code Editor
 
 We recommend to use VSCode (it's free) and install the following extension:
 
-- `lit-html` vscode extension: https://marketplace.visualstudio.com/items?itemName=bierner.lit-html . With this extension the Html Syntax would be available if you write a string of HTML.
-- `Prettier`
+- [lit-html](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html) : the Html Syntax would be available if you write in a string variable.
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) : code formatter
 
 # Roadmap :
 
@@ -68,3 +67,6 @@ We recommend to use VSCode (it's free) and install the following extension:
 5. release
 
 ![header2](readme_header2.png)
+
+# Support :
+just mention me on [X](https://x.com/andirkh) 
