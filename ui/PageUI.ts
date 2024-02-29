@@ -2,9 +2,9 @@ import footer from './partials/footer';
 import header from './partials/header';
 import meta from './partials/meta';
 
-import { theme } from '../../constants';
+import { theme } from '../constants';
 
-const page = (content: string, title: string): string => String.raw`
+const PageUI = (content: string, title: string): string => String.raw`
   <!DOCTYPE html>
   <html lang="en" theme="${theme}">
   <head>
@@ -22,4 +22,4 @@ const page = (content: string, title: string): string => String.raw`
   </html>
 `;
 
-export default page;
+export default PageUI;
