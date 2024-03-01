@@ -1,4 +1,5 @@
 import markdownit from 'markdown-it';
+import tm from 'markdown-it-texmath';
 import hljs from 'highlight.js';
 
 export const convertUsingMarkdownIt = (mdString: string): string => {
@@ -13,6 +14,10 @@ export const convertUsingMarkdownIt = (mdString: string): string => {
 
       return ''; // use external default escaping
     },
+  }).use(tm, {
+    engine: require('katex'),
+    delimiters: 'dollars',
+    katexOptions: { macros: { '\\RR': '\\mathbb{R}' } },
   });
   return markdown.render(mdString);
 };

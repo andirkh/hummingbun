@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* HighlightJs */
+
 .hljs {
   background: #23241f;
   color: #f8f8f2;
@@ -75,4 +77,35 @@
 .hljs-deletion,
 .hljs-meta {
   color: #75715e;
+}
+
+/* markdown-it-textmath */
+
+.katex {
+  font-size: 1.5em !important;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+.katex-html {
+  display: none;
+}
+eq {
+  display: inline-block;
+}
+eqn {
+  display: block;
+}
+section.eqno {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  align-items: center;
+}
+section.eqno > eqn {
+  width: 100%;
+  margin-left: 3em;
+}
+section.eqno > span {
+  width: 3em;
+  text-align: right;
 }
