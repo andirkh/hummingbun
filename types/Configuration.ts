@@ -1,5 +1,5 @@
 interface Configuration {
-  blog: string;
+  blogDirectory: string;
   perPage: number;
   theme: string;
 }

@@ -60,7 +60,7 @@ export const buildCss = async (): Promise<void> => {
   Bun.spawn(['bun', 'run', 'tailwind']);
 };
 
-export const compileAll = async (): Promise<void> => {
+export const buildAll = async (): Promise<void> => {
   await countPerformance(buildDistribution, 'distribution');
   await buildCss();
   await countPerformance(buildAssets, 'assets');

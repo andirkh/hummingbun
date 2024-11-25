@@ -1,5 +1,5 @@
 {
-  "blog": "example",
+  "blogDirectory": "blog",
   "perPage": 3,
   "theme": "cupcake"
 }

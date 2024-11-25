@@ -3,7 +3,6 @@ import type { BunFile } from 'bun';
 import { convertUsingMarkdownIt } from './converter';
 import {
   perPage,
-  blog,
   TYPE_POST,
   TYPE_PAGE,
   RESERVED_SLUG,

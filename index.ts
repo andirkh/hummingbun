@@ -2,14 +2,14 @@ import { watch } from 'fs';
 
 import { throttle } from './src/utils';
 import { PATH_ENTRY_DIR, PORT } from './constants';
-import { compileAll, ROUTES } from './src/build';
+import { buildAll, ROUTES } from './src/build';
 
-await compileAll();
+await buildAll();
 
 const isLocalServer = Bun.argv.includes('--local-server');
 
 if (isLocalServer) {
-  const throttledCompileAll = throttle(compileAll, 10000);
+  const throttledCompileAll = throttle(buildAll, 10000);
 
   const watcher = watch(
     PATH_ENTRY_DIR,
