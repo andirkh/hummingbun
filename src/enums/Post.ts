@@ -1,3 +1,3 @@
 export enum Post {
-  text = 'post',
+  text = 'archive',
 }

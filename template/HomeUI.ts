@@ -4,6 +4,8 @@ import meta from './partials/meta';
 
 import { theme } from '../src/constants';
 
+import { Post } from '../src/enums/Post';
+
 import type { Content } from '../src/types/Content';
 
 type Props = {
@@ -31,7 +33,7 @@ const HomeUI: HomeUIType = ({ contents, prev, next }) => String.raw`
             <figure><img src="${obj.image}" alt="Shoes" /></figure>
             <div class="card-body">
               <h2 class="card-title">${obj.title}</h2>
-              <a href="/post/${obj.slug}" class="card-actions justify-end">
+              <a href="/${Post.text}/${obj.slug}" class="card-actions justify-end">
                 <button class="btn btn-primary">Read More</button>
               </a>
             </div>

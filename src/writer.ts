@@ -83,7 +83,7 @@ export const writeEachCategoriesPage = async (
     const postByCategoryLink: string = categoryData
       .map((post) => {
         return String.raw`
-        <a href="/post/${post.slug}">${post.title}</a>
+        <a href="/${Post.text}/${post.slug}">${post.title}</a>
         <br />
         `;
       })
