@@ -11,13 +11,14 @@ import {
   PATH_DIST_DIR,
   PATH_ASSET_DIR,
   PATH_ASSET_DIST_DIR,
-} from '../constants';
+} from './constants';
 import type { CategoriesMap } from './types/CategoriesMap';
+import { Post } from './enums/Post';
 
 export const writePostHtmls = async (contents: Content[]): Promise<void> => {
   contents.forEach(async (obj: Content) => {
     const html: string = PostUI({ obj });
-    const htmlFilePath: string = `${PATH_DIST_DIR}/post/${obj.slug}/index.html`;
+    const htmlFilePath: string = `${PATH_DIST_DIR}/${Post.text}/${obj.slug}/index.html`;
 
     await Bun.write(htmlFilePath, simpleMinifier(html));
   });

@@ -8,18 +8,15 @@ import {
 
 import { mapLocalRoute, extractMarkdownContents } from './mappers';
 
-import {
-  PATH_DIST_DIR,
-  PATH_CONTENT_DIR,
-  PATH_ASSET_DIR,
-  TYPE_POST,
-  TYPE_PAGE,
-} from '../constants';
+import { PATH_DIST_DIR, PATH_CONTENT_DIR, PATH_ASSET_DIR } from './constants';
 
 import { countPerformance, getFilePaths } from './utils';
 
 import type { Content } from './types/Content';
 import type { LocalRoute } from './types/LocalRoute';
+
+import { Post } from './enums/Post';
+import { Page } from './enums/Page';
 
 export let ROUTES: LocalRoute = {};
 
@@ -34,10 +31,10 @@ const buildDistribution = async (): Promise<void> => {
     });
 
   const postContents: Content[] = contents.filter(
-    (content) => content.type === TYPE_POST,
+    (content) => content.type === Post.text,
   );
   const pageContents: Content[] = contents.filter(
-    (content) => content.type === TYPE_PAGE,
+    (content) => content.type === Page.text,
   );
 
   await writeHomeHtmls(postContents);

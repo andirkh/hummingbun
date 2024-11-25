@@ -1,5 +1,5 @@
-type PostType = 'post';
-type PageType = 'page';
+import type { Page } from '../enums/Page';
+import type { Post } from '../enums/Post';
 
 interface Content {
   content: string;
@@ -10,7 +10,7 @@ interface Content {
   slug: string;
   image: string;
   draft: boolean;
-  type: PostType | PageType;
+  type: Post.text | Page.text;
 }
 
-export type { Content, PostType, PageType };
+export type { Content };

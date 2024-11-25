@@ -1,7 +1,9 @@
-import configuration from './configuration.json';
+import configuration from '../configuration.json';
 
-import type { Configuration } from './src/types/Configuration';
-import type { PageType, PostType } from './src/types/Content';
+import { Page } from './enums/Page';
+import { Post } from './enums/Post';
+
+import type { Configuration } from './types/Configuration';
 
 export const { blogDirectory, perPage, theme }: Configuration = configuration;
 
@@ -15,7 +17,9 @@ export const PATH_ASSET_DIST_DIR: string = `${PATH_DIST_DIR}/asset`;
 
 export const PORT: number = 11072;
 
-export const TYPE_POST: PostType = 'post';
-export const TYPE_PAGE: PageType = 'page';
-
-export const RESERVED_SLUG: string[] = ['post', 'page', 'asset', 'categories'];
+export const RESERVED_SLUG: string[] = [
+  Post.text,
+  Page.text,
+  'asset',
+  'categories',
+];

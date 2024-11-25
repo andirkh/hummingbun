@@ -1,4 +1,4 @@
-![header](readme_header.png)
+![header](readme.png)
 
 Simple Static Site Generator for everyone, built upon Bun.
 
@@ -6,7 +6,7 @@ Simple Static Site Generator for everyone, built upon Bun.
 
 Open `configuration.json`, set the entryDir. You can use any folder, however the default is `example`.
 
-Here's the `/example` dir :
+Here's the `/blog` dir :
 ```
 📁 content (md files)
 📁 asset (js, css, img)
@@ -50,8 +50,6 @@ We recommend to use VSCode (it's free) and use the following extension:
 
 - [lit-html](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html) : the Html Syntax would be available if you write in a string variable.
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) : code formatter
-
-![header2](readme_header2.png)
 
 # Support :
 just mention me on [X](https://x.com/andirkh) 

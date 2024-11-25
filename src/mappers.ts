@@ -1,18 +1,15 @@
 import type { BunFile } from 'bun';
 
 import { parseMarkdownToHtml } from './converter';
-import {
-  perPage,
-  TYPE_POST,
-  TYPE_PAGE,
-  RESERVED_SLUG,
-} from '../constants';
+import { perPage, RESERVED_SLUG } from './constants';
 
 import type { Content } from './types/Content';
 import type { HomeRoute } from './types/HomeRoute';
 import type { LocalRoute } from './types/LocalRoute';
 import type { CategoriesMap } from './types/CategoriesMap';
 import { convertToSlug, generateRandomString } from './utils';
+import { Post } from './enums/Post';
+import { Page } from './enums/Page';
 
 export const extractMarkdownContents = async (
   markdownPaths: string[],
@@ -44,7 +41,7 @@ export const extractFrontmatter = (markdown: string): Content => {
     slug: '',
     image: '',
     draft: false,
-    type: TYPE_POST,
+    type: Post.text,
   };
 
   if (parts.length > 2) {
@@ -71,7 +68,7 @@ export const extractFrontmatter = (markdown: string): Content => {
         }
       }
 
-      if (key === 'type' && (value === TYPE_POST || value === TYPE_PAGE)) {
+      if (key === 'type' && (value === Post.text || value === Page.text)) {
         yamlData['type'] = value;
       }
 
@@ -108,9 +105,9 @@ export const mapHomeLinks = (
   maxPage: number,
 ): HomeRoute => {
   const htmlHomePath: string = `${distDir}/index.html`;
-  const htmlPagePath: string = `${distDir}/page/${page}/index.html`;
-  const nextPage: string = `/page/${page + 1}`;
-  const prevPage: string = `/page/${page - 1}`;
+  const htmlPagePath: string = `${distDir}/${Page.text}/${page}/index.html`;
+  const nextPage: string = `/${Page.text}/${page + 1}`;
+  const prevPage: string = `/${Page.text}/${page - 1}`;
 
   if (page === 1) {
     return {

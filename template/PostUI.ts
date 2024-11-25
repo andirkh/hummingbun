@@ -3,7 +3,7 @@ import footer from './partials/footer';
 import header from './partials/header';
 import meta from './partials/meta';
 
-import { theme } from '../constants';
+import { theme } from '../src/constants';
 
 import { getFormattedDate } from '../src/utils';
 

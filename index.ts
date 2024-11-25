@@ -1,7 +1,7 @@
 import { watch } from 'fs';
 
 import { throttle } from './src/utils';
-import { PATH_ENTRY_DIR, PORT } from './constants';
+import { PATH_ENTRY_DIR, PORT } from './src/constants';
 import { buildAll, ROUTES } from './src/build';
 
 await buildAll();
