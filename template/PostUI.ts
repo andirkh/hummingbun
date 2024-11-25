@@ -7,7 +7,13 @@ import { theme } from '../constants';
 
 import { getFormattedDate } from '../src/utils';
 
-const PostUI = (obj: Content): string => {
+type Props = {
+  obj: Content;
+};
+
+export type PostUIType = ({ obj }: Props) => string;
+
+const PostUI: PostUIType = ({ obj }) => {
   return String.raw`
       <!DOCTYPE html>
       <html lang="en" theme="${theme}">

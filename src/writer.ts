@@ -16,7 +16,7 @@ import type { CategoriesMap } from './types/CategoriesMap';
 
 export const writePostHtmls = async (contents: Content[]): Promise<void> => {
   contents.forEach(async (obj: Content) => {
-    const html: string = PostUI(obj);
+    const html: string = PostUI({ obj });
     const htmlFilePath: string = `${PATH_DIST_DIR}/post/${obj.slug}/index.html`;
 
     await Bun.write(htmlFilePath, simpleMinifier(html));
@@ -36,7 +36,11 @@ export const writeHomeHtmls = async (
       contentPerPage.length,
     );
 
-    const html: string = HomeUI(contentPerPage[index], prev, next);
+    const html: string = HomeUI({
+      contents: contentPerPage[index],
+      prev,
+      next,
+    });
     await Bun.write(target, simpleMinifier(html));
   }
 };
@@ -64,7 +68,7 @@ export const writeMainCategoriesPage = async (
     `;
     })
     .join('');
-  const html: string = PageUI(categoriesLink, 'Categories');
+  const html: string = PageUI({ content: categoriesLink, title: 'Categories' });
 
   await Bun.write(path, simpleMinifier(html));
 };
@@ -84,7 +88,10 @@ export const writeEachCategoriesPage = async (
       })
       .join('');
     const path: string = `${PATH_DIST_DIR}/categories/${category}/index.html`;
-    const html: string = PageUI(postByCategoryLink, `Category: ${category}`);
+    const html: string = PageUI({
+      content: postByCategoryLink,
+      title: `Category: ${category}`,
+    });
 
     await Bun.write(path, simpleMinifier(html));
   });
@@ -92,7 +99,7 @@ export const writeEachCategoriesPage = async (
 
 export const writeSinglePages = async (contents: Content[]): Promise<void> => {
   contents.forEach(async (obj: Content) => {
-    const html: string = PageUI(obj.content, obj.title);
+    const html: string = PageUI({ content: obj.content, title: obj.title });
     const htmlFilePath: string = `${PATH_DIST_DIR}/${obj.slug}/index.html`;
 
     await Bun.write(htmlFilePath, simpleMinifier(html));

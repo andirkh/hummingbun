@@ -6,11 +6,15 @@ import { theme } from '../constants';
 
 import type { Content } from '../src/types/Content';
 
-const HomeUI = (
-  contents: Content[],
-  prev: string,
-  next: string,
-): string => String.raw`
+type Props = {
+  contents: Content[];
+  prev: string;
+  next: string;
+};
+
+export type HomeUIType = ({ contents, prev, next }: Props) => string;
+
+const HomeUI: HomeUIType = ({ contents, prev, next }) => String.raw`
   <!DOCTYPE html>
   <html lang="en" theme="${theme}">
   <head>
