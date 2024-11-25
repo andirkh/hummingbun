@@ -4,7 +4,7 @@ import meta from './partials/meta';
 
 import { theme } from '../constants';
 
-import type { Content } from '../types/Content';
+import type { Content } from '../src/types/Content';
 
 const HomeUI = (
   contents: Content[],

@@ -1,6 +1,6 @@
 import type { BunFile } from 'bun';
 
-import { convertUsingMarkdownIt } from './converter';
+import { parseMarkdownToHtml } from './converter';
 import {
   perPage,
   TYPE_POST,
@@ -8,13 +8,13 @@ import {
   RESERVED_SLUG,
 } from '../constants';
 
-import type { Content } from '../types/Content';
-import type { HomeRoute } from '../types/HomeRoute';
-import type { LocalRoute } from '../types/LocalRoute';
-import type { CategoriesMap } from '../types/CategoriesMap';
+import type { Content } from './types/Content';
+import type { HomeRoute } from './types/HomeRoute';
+import type { LocalRoute } from './types/LocalRoute';
+import type { CategoriesMap } from './types/CategoriesMap';
 import { convertToSlug, generateRandomString } from './utils';
 
-export const extractContents = async (
+export const extractMarkdownContents = async (
   markdownPaths: string[],
 ): Promise<Content[]> => {
   const mdFileRegex = /\.md$/i;
@@ -36,7 +36,7 @@ export const extractFrontmatter = (markdown: string): Content => {
 
   const markdownString: string = parts.slice(2).concat().join();
   const yamlData: Content = {
-    content: convertUsingMarkdownIt(markdownString),
+    content: parseMarkdownToHtml(markdownString),
     title: '',
     date: new Date('1994-01-31T00:00:00Z'),
     author: '',

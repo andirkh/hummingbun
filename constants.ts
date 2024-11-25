@@ -1,7 +1,7 @@
 import configuration from './configuration.json';
 
-import type { Configuration } from './types/Configuration';
-import type { PageType, PostType } from './types/Content';
+import type { Configuration } from './src/types/Configuration';
+import type { PageType, PostType } from './src/types/Content';
 
 export const { blogDirectory, perPage, theme }: Configuration = configuration;
 

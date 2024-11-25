@@ -1,4 +1,4 @@
-import type { Content } from '../types/Content';
+import type { Content } from '../src/types/Content';
 import footer from './partials/footer';
 import header from './partials/header';
 import meta from './partials/meta';

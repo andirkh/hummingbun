@@ -1,18 +1,18 @@
-import type { Content } from '../types/Content';
+import type { Content } from './types/Content';
 
-import HomeUI from '../ui/HomeUI';
-import PageUI from '../ui/PageUI';
-import PostUI from '../ui/PostUI';
+import HomeUI from '../template/HomeUI';
+import PageUI from '../template/PageUI';
+import PostUI from '../template/PostUI';
 
 import { mapCategories, mapContentPerPage, mapHomeLinks } from './mappers';
 import { hasFileExtension, simpleMinifier } from './utils';
-import type { HomeRoute } from '../types/HomeRoute';
+import type { HomeRoute } from './types/HomeRoute';
 import {
   PATH_DIST_DIR,
   PATH_ASSET_DIR,
   PATH_ASSET_DIST_DIR,
 } from '../constants';
-import type { CategoriesMap } from '../types/CategoriesMap';
+import type { CategoriesMap } from './types/CategoriesMap';
 
 export const writePostHtmls = async (contents: Content[]): Promise<void> => {
   contents.forEach(async (obj: Content) => {

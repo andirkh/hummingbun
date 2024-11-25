@@ -6,7 +6,7 @@ import {
   writeAssets,
 } from './writer';
 
-import { mapLocalRoute, extractContents } from './mappers';
+import { mapLocalRoute, extractMarkdownContents } from './mappers';
 
 import {
   PATH_DIST_DIR,
@@ -18,14 +18,14 @@ import {
 
 import { countPerformance, getFilePaths } from './utils';
 
-import type { Content } from '../types/Content';
-import type { LocalRoute } from '../types/LocalRoute';
+import type { Content } from './types/Content';
+import type { LocalRoute } from './types/LocalRoute';
 
 export let ROUTES: LocalRoute = {};
 
 const buildDistribution = async (): Promise<void> => {
   const markdownPaths: string[] = await getFilePaths(PATH_CONTENT_DIR);
-  const parsedFiles: Content[] = await extractContents(markdownPaths);
+  const parsedFiles: Content[] = await extractMarkdownContents(markdownPaths);
 
   const contents = parsedFiles
     .filter((content) => content.draft === false)

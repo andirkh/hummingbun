@@ -3,6 +3,8 @@
   "module": "index.ts",
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/html-minifier": "^4.0.5",
+    "@types/markdown-it": "^14.1.2",
     "daisyui": "latest",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1"
@@ -14,7 +16,7 @@
     "build": "bun run index.ts",
     "serve": "bun run index.ts --local-server",
     "hot-serve": "bun --hot run index.ts --local-server",
-    "tailwind": "bunx tailwindcss -i ./ui/css/input.css -o ./dist/asset/css/out.css --minify"
+    "tailwind": "bunx tailwindcss -i ./template/css/input.css -o ./dist/asset/css/out.css --minify"
   },
   "type": "module",
   "dependencies": {

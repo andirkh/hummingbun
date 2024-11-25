@@ -1,6 +1,6 @@
 import { expect, test, describe } from 'bun:test';
 
-import { convertUsingMarkdownIt } from '../converter';
+import { parseMarkdownToHtml } from '../converter';
 
 const removeTabsInString = (multilineString: string): string => {
   return multilineString.replace(/^\s+/gm, '');
@@ -132,7 +132,7 @@ describe('Convert Markdown to HTML', () => {
   Object.keys(testCases).forEach((t) => {
     const { text, result } = testCases[t];
     test(t, () => {
-      expect(convertUsingMarkdownIt(text)).toBe(result);
+      expect(parseMarkdownToHtml(text)).toBe(result);
     });
   });
 });

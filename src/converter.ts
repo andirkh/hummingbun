@@ -2,7 +2,8 @@ import markdownit from 'markdown-it';
 import tm from 'markdown-it-texmath';
 import hljs from 'highlight.js';
 
-export const convertUsingMarkdownIt = (mdString: string): string => {
+// Parse Markdown to HTML :
+export const parseMarkdownToHtml = (mdString: string): string => {
   const markdown = markdownit({
     html: true,
     highlight: function (str: string, lang: string) {

@@ -4,8 +4,8 @@ import { blog } from './configuration.json';
 export default {
   content: [
     `./dist/**/*.{html,js,ts}`,
-    `./ui/**/*.{html,js,ts}`,
-    `./ui/*.{html,js,ts}`
+    `./template/**/*.{html,js,ts}`,
+    `./template/*.{html,js,ts}`
   ],
   plugins: [
     require('@tailwindcss/typography'),
