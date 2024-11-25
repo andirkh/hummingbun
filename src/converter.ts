@@ -1,8 +1,7 @@
 import markdownit from 'markdown-it';
-import tm from 'markdown-it-texmath';
 import hljs from 'highlight.js';
 
-// Parse Markdown to HTML :
+// Parse Markdown to HTML
 export const parseMarkdownToHtml = (mdString: string): string => {
   const markdown = markdownit({
     html: true,
@@ -13,12 +12,9 @@ export const parseMarkdownToHtml = (mdString: string): string => {
         } catch (__) {}
       }
 
-      return ''; // use external default escaping
+      return '';
     },
-  }).use(tm, {
-    engine: require('katex'),
-    delimiters: 'dollars',
-    katexOptions: { macros: { '\\RR': '\\mathbb{R}' } },
-  });
+  })
+
   return markdown.render(mdString);
 };

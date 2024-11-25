@@ -1,4 +1,4 @@
-![header](readme.png)
+![header](readme.avif)
 
 Simple Static Site Generator for everyone, built upon Bun.
 

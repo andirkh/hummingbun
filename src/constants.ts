@@ -7,8 +7,8 @@ import type { Configuration } from './types/Configuration';
 
 export const { blogDirectory, perPage, theme }: Configuration = configuration;
 
-export const PATH_ENTRY_DIR: string = `${import.meta.dir}/${blogDirectory}`;
-export const PATH_DIST_DIR: string = `${import.meta.dir}/dist`;
+export const PATH_ENTRY_DIR: string = `${import.meta.dir.replace(/\/src$/, '')}/${blogDirectory}`;
+export const PATH_DIST_DIR: string = `${import.meta.dir.replace(/\/src$/, '')}/dist`;
 export const PATH_CONTENT_DIR: string = `${PATH_ENTRY_DIR}/content`;
 export const PATH_UI_DIR: string = `${PATH_ENTRY_DIR}/ui`;
 

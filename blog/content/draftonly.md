@@ -4,7 +4,7 @@ date: 2024-04-16
 author: Humming Admin
 categories: ["test"]
 slug: lorem-ipsum-1
-image: /asset/img/7.jpeg
+image: /asset/img/7.avif
 draft: true
 ---
 

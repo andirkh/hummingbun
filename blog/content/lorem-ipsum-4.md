@@ -4,7 +4,7 @@ date: 2024-04-19
 author: Humming Admin
 categories: ["test", "Hello, Goodbye!"]
 slug: lorem-ipsum-4
-image: /asset/img/4.jpeg
+image: /asset/img/4.avif
 draft: false
 ---
 
