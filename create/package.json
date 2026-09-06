@@ -1,11 +1,12 @@
 {
   "name": "create-hummingbun",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "type": "module",
   "bin": {
-    "create-hummingbun": "cli.ts"
+    "create-hummingbun": "./cli.js"
   },
   "scripts": {
+    "prepublishOnly": "bun build cli.ts --outfile cli.js --target bun",
     "build": "bun run hummingbun.tsx",
     "dev": "bun run --watch hummingbun.tsx"
   },

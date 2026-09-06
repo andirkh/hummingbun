@@ -1,6 +1,6 @@
 # $PROJECT_NAME
 
-Scaffold blog with Hummingbun npm package.
+Scaffold a blog with Hummingbun npm package.
 
 ## Getting Started
 
