@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>How to Integrate Hummingbun · Hummingbun</title><meta name="description" content="Getting started with your own Hummingbun site"/><meta name="author" content="Hummingbun"/><meta property="og:title" content="How to Integrate Hummingbun · Hummingbun"/><meta property="og:description" content="Getting started with your own Hummingbun site"/><meta property="og:image" content="https://hummingbun.pouffer.com/favicon.png"/><meta property="og:type" content="article"/><meta property="og:url" content="https://hummingbun.pouffer.com/how-to-integrate.html"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="How to Integrate Hummingbun · Hummingbun"/><meta name="twitter:description" content="Getting started with your own Hummingbun site"/><meta name="twitter:image" content="https://hummingbun.pouffer.com/favicon.png"/><link rel="canonical" href="https://hummingbun.pouffer.com/how-to-integrate.html"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Integrate Hummingbun","description":"Getting started with your own Hummingbun site","image":"https://hummingbun.pouffer.com/favicon.png","datePublished":"2025-01-02","author":{"@type":"Person","name":"Hummingbun"}}</script><link rel="stylesheet" href="/styles.css"/><link rel="stylesheet" href="/main.css"/><link rel="icon" href="/favicon.png" type="image/png"/></head><body><header class="site-header"><div class="site-header-content"><a href="/" class="site-title">Hummingbun</a><p class="site-subtitle">A minimalist static site generator</p></div></header><main class="site-main"><article class="post"><header class="post-header"><div class="post-tags"><span variant="secondary" k="badge">#guide</span><span variant="secondary" k="badge">#integration</span></div><div class="post-meta"><time datetime="2025-01-02">2025-01-02</time></div></header><div class="post-content" k="prose"><h1>How to Integrate Hummingbun</h1>
+<p>Setting up your Hummingbun site is as gentle as the flutter of wings.</p>
+<h2>Quick Start</h2>
+<pre><code class="language-bash">bun create hummingbun my-site
+cd my-site
+bun install
+</code></pre>
+<h2>Create Your Build Script</h2>
+<p>In your <code>hummingbun.tsx</code>, declare your site's essence:</p>
+<pre><code class="language-typescript">import { hummingbunBuild } from &quot;hummingbun&quot;;
+import Template from &quot;./template&quot;;
+
+await hummingbunBuild(
+  {
+    title: &quot;Your Site&quot;,
+    subtitle: &quot;Your Story&quot;,
+    description: &quot;Welcome to my corner of the web&quot;,
+    siteUrl: &quot;https://your-domain.com&quot;,
+    contentDir: &quot;content&quot;,
+    staticDir: &quot;static&quot;,
+    distributionDir: &quot;dist&quot;,
+  },
+  Template,
+);
+</code></pre>
+<h2>Write Your Content</h2>
+<p>Create markdown files in the <code>content/</code> directory. Each becomes a page.</p>
+<h2>Deploy</h2>
+<p>Push to GitHub. Let the workflow handle the rest. Your site blooms on the web.</p>
+</div></article><nav class="post-nav"><a href="/" class="nav-link">← Back to Home</a></nav></main><footer class="site-footer"><p>© Hummingbun</p></footer></body></html>
