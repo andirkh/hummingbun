@@ -1,6 +1,6 @@
 # $PROJECT_NAME
 
-A beautiful site powered by Hummingbun.
+Scaffold blog with Hummingbun npm package.
 
 ## Getting Started
 
