@@ -1,28 +1,30 @@
 {
   "name": "hummingbun",
+  "version": "1.0.0",
   "module": "index.ts",
+  "types": "index.ts",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "index.ts",
+    "src",
+    "create"
+  ],
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/html-minifier": "^4.0.5",
-    "@types/markdown-it": "^14.1.2",
-    "daisyui": "latest",
-    "prettier": "^3.2.5",
-    "tailwindcss": "^3.4.1"
-  },
-  "peerDependencies": {
     "typescript": "^5.0.0"
   },
+  "engines": {
+    "bun": ">=1.4.2"
+  },
   "scripts": {
-    "build": "bun run index.ts",
-    "serve": "bun run index.ts --local-server",
-    "hot-serve": "bun --hot run index.ts --local-server",
-    "tailwind": "bunx tailwindcss -i ./template/css/input.css -o ./dist/asset/css/out.css --minify"
+    "build": "bun run hummingbun.tsx"
   },
   "type": "module",
   "dependencies": {
-    "@tailwindcss/typography": "^0.5.10",
-    "highlight.js": "^11.9.0",
-    "html-minifier": "^4.0.0",
-    "markdown-it": "^14.0.0"
+    "kinu": "^0.2.0",
+    "preact": "^10.29.8",
+    "preact-render-to-string": "^6.7.0"
   }
 }
